@@ -1,4 +1,4 @@
-# Typecho Theme VOID 3.5.3
+# Typecho Theme VOID 3.5.4
 
 > ✏ 一款简洁优雅的 Typecho 主题
 
@@ -58,19 +58,19 @@
 
 <details><summary>如何开启文章点赞？</summary><br>
 
-文章点赞功能依赖配套插件，请上传至插件目录并启用。插件一般会随主题包发布，开发版主题请前往 https://github.com/AlanDecode/VOID-Plugin 获取。
+文章点赞功能依赖配套插件，请上传至插件目录并启用。插件随主题发行包提供（VOID.zip 的 `2.配套插件/VOID` 文件夹），上传至 `/usr/plugins` 目录后台启用即可。
 
 </details>
 
 <details><summary>如何开启文章浏览量统计？</summary><br>
 
-文章浏览量统计功能依赖配套插件，请上传至插件目录并启用。插件一般会随主题包发布，开发版主题请前往 https://github.com/AlanDecode/VOID-Plugin 获取。
+文章浏览量统计功能依赖配套插件，请上传至插件目录并启用。插件随主题发行包提供（VOID.zip 的 `2.配套插件/VOID` 文件夹），上传至 `/usr/plugins` 目录后台启用即可。
 
 </details>
 
 <details><summary>如何开启文章字数统计？</summary><br>
 
-文章字数统计功能依赖配套插件，请上传至插件目录并启用。插件一般会随主题包发布，开发版主题请前往 https://github.com/AlanDecode/VOID-Plugin 获取。
+文章字数统计功能依赖配套插件，请上传至插件目录并启用。插件随主题发行包提供（VOID.zip 的 `2.配套插件/VOID` 文件夹），上传至 `/usr/plugins` 目录后台启用即可。
 
 </details>
 
@@ -204,6 +204,12 @@ gulp build
 </details>
 
 ## 更新日志
+
+**🍰 2026-10-27 Version 3.5.4**
+
+* 新增：发行包随附配套插件（`2.配套插件/VOID`，同步 VOID-Plugin 仓库 2023-11 更新，含单次图片处理数量上限设置等）
+* 新增：补回上游遗漏的 `OwO_02` 表情资源（`assets/libs/owo/`）
+* 调整：插件获取说明改为随发行包提供；发行包结构与原版一致（`1.主题/VOID` + `2.配套插件/VOID`）
 
 **🍰 2026-10-27 Version 3.5.3**
 

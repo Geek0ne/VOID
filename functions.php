@@ -33,7 +33,7 @@ function themeInit()
 }
 
 $GLOBALS['VOIDPluginREQ'] = 1.2;
-$GLOBALS['VOIDVersion'] = '3.5.3';
+$GLOBALS['VOIDVersion'] = '3.5.4';
 
 /**
  * 主题设置
@@ -50,7 +50,7 @@ function themeConfig($form)
     }</style>';
 
     if (!Utils::hasVOIDPlugin($GLOBALS['VOIDPluginREQ'])) {
-        echo '<p class="notice">未检测到合适的 VOID 插件！主题部分功能依赖插件支持，推荐安装以获得最佳体验。VOID 插件一般会随主题包发布，开发版主题请前往 https://github.com/AlanDecode/VOID-Plugin 获取。</p>';
+        echo '<p class="notice">未检测到合适的 VOID 插件！主题部分功能依赖插件支持，推荐安装以获得最佳体验。VOID 插件随主题发行包提供（VOID.zip 的 2.配套插件 文件夹），上传至 /usr/plugins 目录并启用即可。</p>';
     }
 
     echo '<p id="void-check-update" class="notice">正在检查更新……</p>';
