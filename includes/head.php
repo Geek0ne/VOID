@@ -50,7 +50,12 @@ if (isset($_POST['void_action'])) {
     $twitterId = isset($setting['twitterId']) ? trim((string) $setting['twitterId'], " \t\n\r\0\x0B@") : '';
 
     // 当前页面 URL（canonical / og:url 共用）
-    $currentUrl = $this->permalink;
+    // 注意: $this->permalink 仅对单篇内容页(文章/页面)有效,
+    // 列表页(首页/分类/搜索/404 等)无内容行,直接取会触发 Router 异常,
+    // 此处按官方惯例对非单页回退到当前请求 URI。
+    $currentUrl = $this->is('single')
+        ? $this->permalink
+        : Typecho_Common::url($this->request->getRequestUri(), $this->options->index);
     ?>
     <title><?php Contents::title($this); ?></title>
     <meta name="author" content="<?php $this->author(); ?>" />

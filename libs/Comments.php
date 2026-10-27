@@ -106,6 +106,7 @@ class VOID_Widget_Comments_Archive extends Widget_Abstract_Comments
         $setting = $GLOBALS['VOIDSetting'];
         
         $avatarClass = '';
+        $commentClass = '';
         if ($this->authorId) {
             if ($this->authorId == $this->ownerId) {
                 $avatarClass .= ' star';
@@ -224,12 +225,12 @@ class VOID_Widget_Comments_Archive extends Widget_Abstract_Comments
     {
 
         if ($this->options->commentsPageBreak) {            
-            $pageRow = array('permalink' => $this->parentContent['pathinfo'], 'commentPage' => $this->_currentPage);
+            $pageRow = array('permalink' => $this->parentRow['pathinfo'], 'commentPage' => $this->_currentPage);
             return Typecho_Router::url('comment_page',
                         $pageRow, $this->options->index) . '#' . $this->theId;
         }
         
-        return $this->parentContent['permalink'] . '#' . $this->theId;
+        return $this->parentRow['permalink'] . '#' . $this->theId;
     }
 
     /**
@@ -258,12 +259,15 @@ class VOID_Widget_Comments_Archive extends Widget_Abstract_Comments
     /**
      * 重载内容获取
      *
+     * Typecho 1.3 中核心 ___parentContent() 返回 Contents 对象,
+     * 本主题需要的是原始行数组,故改名为 ___parentRow()
+     *
      * @access protected
-     * @return void
+     * @return array
      */
-    protected function ___parentContent() : ?array
+    protected function ___parentRow() : array
     {
-        return $this->parameter->parentContent;
+        return (array) $this->parameter->parentContent;
     }
 
     /**

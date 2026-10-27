@@ -11,7 +11,12 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $setting = $GLOBALS['VOIDSetting'];
 $parameter = array(
     'parentId'      => $this->hidden ? 0 : $this->cid,
-    'parentContent' => $this->row,
+    // Typecho 1.3 中 $this->row 是原始数据行,不含旧版的 permalink/pathinfo 计算字段,
+    // 这里显式补齐,保证评论链接/分页路由可用
+    'parentContent' => array_merge((array) $this->row, array(
+        'pathinfo'  => $this->path,
+        'permalink' => $this->permalink,
+    )),
     'respondId'     => $this->respondId,
     'commentPage'   => $this->request->filter('int')->commentPage,
     'allowComment'  => $this->allow('comment')

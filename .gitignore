@@ -6,11 +6,8 @@ build.zip
 npm-debug.log*
 yarn-error.log*
 
-# 打包后的合并文件（由 npm run build 生成）
-assets/bundle*.js
-assets/bundle*.css
-assets/VOID*.css
-assets/VOID*.css.map
+# 注: 打包合并文件(assets/bundle*、assets/VOID*.css)已纳入版本管理,
+# 便于克隆后直接部署;如需自行构建,运行 `make build` 覆盖即可。
 
 .DS_Store
 *.swp

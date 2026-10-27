@@ -83,7 +83,8 @@ $setting = $GLOBALS['VOIDSetting'];
                             <input type="password" name="password" autocomplete="current-password" placeholder="请输入密码" required/>
                             <input type="hidden" name="referer" value="<?php 
                                 if($this->is('index')) $this->options->siteUrl();
-                                else $this->permalink();
+                                elseif($this->is('single')) $this->permalink();
+                                else echo Utils::esc(Typecho_Common::url($this->request->getRequestUri(), $this->options->index));
                             ?>">
                         </div>
                         <div class="buttons" id="loggin-buttons">
