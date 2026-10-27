@@ -2,7 +2,7 @@
 /** 
  * 404.php
  *  
- * @author      熊猫小A
+ * @author      Geek0ne
  * @version     2019-01-17 0.1
  * 
 */ 

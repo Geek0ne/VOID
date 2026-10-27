@@ -1,20 +1,16 @@
-**[2023.04.07] 如果大家配合 Typecho 1.2 版本使用 VOID 时遇到问题，请到 GitHub 集中留言反馈：https://github.com/AlanDecode/Typecho-Theme-VOID/issues/87**
-
----
-
 # Typecho Theme VOID 3.5.3
 
 > ✏ 一款简洁优雅的 Typecho 主题
 
 作为计算机术语时，VOID 的意思是「无类型」。
 
-![](https://raw.githubusercontent.com/AlanDecode/Typecho-Theme-VOID/master/screenshot.png)
+![](https://raw.githubusercontent.com/Geek0ne/VOID/master/screenshot.png)
 
-[![Build](https://github.com/AlanDecode/Typecho-Theme-VOID/workflows/Build/badge.svg)](https://github.com/AlanDecode/Typecho-Theme-VOID/actions) [![downloads](https://img.shields.io/github/downloads/AlanDecode/Typecho-Theme-VOID/total.svg?style=flat-square)](https://github.com/AlanDecode/Typecho-Theme-VOID/releases) [![](https://img.shields.io/github/release/AlanDecode/Typecho-Theme-VOID.svg?style=flat-square)](https://github.com/AlanDecode/Typecho-Theme-VOID/releases) ![](https://img.shields.io/github/license/AlanDecode/Typecho-Theme-VOID.svg?style=flat-square)
+[![Build](https://github.com/Geek0ne/VOID/actions/workflows/ci.yml/badge.svg)](https://github.com/Geek0ne/VOID/actions) [![release](https://img.shields.io/github/v/release/Geek0ne/VOID?style=flat-square)](https://github.com/Geek0ne/VOID/releases) ![](https://img.shields.io/github/license/Geek0ne/VOID.svg?style=flat-square)
 
 ## 特性
 
-> 介绍文章：[VOID：现在可以公开的情报](https://blog.imalan.cn/archives/247/)。
+> 原介绍文章：[VOID：现在可以公开的情报](https://blog.imalan.cn/archives/247/)。
 
 * 响应式设计
 * PJAX 无刷新体验
@@ -44,11 +40,11 @@
 * 评论投票与自动折叠
 * 访客互动展示
 
-以及其他很多细节，总之用起来还算舒服。我建立了一个示例页面，在这里你可以看到 VOID 对常用写作元素的支持以及一些特色功能演示：[示例页面](https://blog.imalan.cn/archives/194/)。
+以及其他很多细节，总之用起来还算舒服。这里有一个[示例页面](https://blog.imalan.cn/archives/194/)，可以看到 VOID 对常用写作元素的支持以及一些特色功能演示。
 
 ## 开始使用
 
-1. 下载主题：[发布版](https://github.com/AlanDecode/Typecho-Theme-VOID/releases)，注意是下载 VOID-x.x.x.zip 这个压缩包，而不是 Source code
+1. 下载主题：[发布版](https://github.com/Geek0ne/VOID/releases)，注意是下载 VOID.zip 这个压缩包，而不是 Source code
 2. 解压
 3. 将**主题文件夹下**的 VOID 文件夹上传至站点 /usr/themes 目录下
 4. 后台启用主题
@@ -57,8 +53,6 @@
 
 * 可选：将主题 `assets` 文件夹下的 `VOIDCacheRule.js` 复制一份到站点根目录，并在主题设置中启用 Service Worker 缓存。
 * 可选：主题文件夹下 advanceSetting.sample.json 中有一些高级设置，可以看看。
-
-开发版主题可以在这里获取：[开发版](https://github.com/AlanDecode/Typecho-Theme-VOID/archive/nightly.zip)。注意，不保证开发版有更新更多的功能。而且开发版变动频繁，若无必要请使用发布版主题。
 
 ## **常见问题（请务必仔细阅读）**
 
@@ -82,7 +76,7 @@
 
 <details><summary>下载安装后样式不对？</summary><br>
 
-仓库中的是未压缩的源代码，包含大量实际使用中不需要的文件，并且可能无法直接使用。请一定通过这两个链接下载主题：[发布版](https://github.com/AlanDecode/Typecho-Theme-VOID/releases) | [开发版](https://github.com/AlanDecode/Typecho-Theme-VOID/archive/nightly.zip)。注意其中发布版是下载 VOID-x.x.x.zip 这个压缩包，而不是 Source code。
+仓库中的是未压缩的源代码，包含大量实际使用中不需要的文件，并且可能无法直接使用。请一定通过[发布版](https://github.com/Geek0ne/VOID/releases)下载主题，下载 VOID.zip 压缩包，而不是 Source code。
 
 </details>
 
@@ -98,8 +92,8 @@
 
 ```
 [links]
-[熊猫小A](https://www.imalan.cn)+(https://secure.gravatar.com/avatar/1741a6eef5c824899e347e4afcbaa75d?s=200&r=G&d=)
-[熊猫小A的博客](https://blog.imalan.cn)+(https://secure.gravatar.com/avatar/1741a6eef5c824899e347e4afcbaa75d?s=64&r=G&d=)
+[示例站点](https://example.com)+(https://example.com/avatar.jpg)
+[另一个示例](https://example.org)+(https://example.org/avatar.jpg)
 [/links]
 ```
 
@@ -177,7 +171,7 @@
 如果你有不错的想法，可以定制自己的版本。首先你需要准备好 NodeJS 环境，然后 clone 这个 repo：
 
 ```bash
-git clone https://github.com/AlanDecode/Typecho-Theme-VOID ./VOID && cd ./VOID
+git clone https://github.com/Geek0ne/VOID ./VOID && cd ./VOID
 ```
 
 安装依赖：
@@ -256,7 +250,7 @@ gulp build
 
 从 2.2 版本起，主题部分功能需要配套插件支持，例如文章点赞、浏览量统计、字数统计等。**请先卸载**原来的 Likes、TePostViews 插件，否则数据会出现错误！TePostViews 插件卸载前请设置为**卸载后保留数据**，以防丢失浏览数据。
 
-更多：[change-log.md](https://github.com/AlanDecode/Typecho-Theme-VOID/blob/master/change-log.md)
+更多：[change-log.md](https://github.com/Geek0ne/VOID/blob/master/change-log.md)
 
 ## 鸣谢
 
@@ -268,12 +262,6 @@ gulp build
 
 [RAW](https://github.com/AlanDecode/Typecho-Theme-RAW) | [Mirages](https://get233.com/archives/mirages-intro.html) | [handsome](https://www.ihewro.com/archives/489/) | [Card](https://blog.shuiba.co/bitcron-theme-card) | [Casper](https://github.com/TryGhost/Casper) | [Typlog](https://typlog.com/) | [FORMA](https://justgoodthemes.com/ghost-themes/forma/)
 
-## 捐助
-
-**如果本项目对你有所帮助，请考虑捐助我**
-
-![谢谢支持](https://wx1.sinaimg.cn/large/0060lm7Tly1g0c4cbi71lj30sc0iv453.jpg)
-
 ## License
 
-MIT © [AlanDecode](https://github.com/AlanDecode)
+MIT © [Geek0ne](https://github.com/Geek0ne)

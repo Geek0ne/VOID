@@ -3,10 +3,10 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-console */
 // VOID
-// Author: 熊猫小A
-// Link: https://blog.imalan.cn/archives/247/
+// Author: Geek0ne
+// Link: https://github.com/Geek0ne/VOID
 
-console.log(' %c Theme VOID %c https://blog.imalan.cn/archives/247/ ', 'color: #fadfa3; background: #23b7e5; padding:5px;', 'background: #1c2b36; padding:5px;');
+console.log(' %c Theme VOID %c https://github.com/Geek0ne/VOID ', 'color: #fadfa3; background: #23b7e5; padding:5px;', 'background: #1c2b36; padding:5px;');
 
 var VOID_Content = {
     countWords: function () {

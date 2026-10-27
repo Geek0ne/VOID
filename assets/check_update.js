@@ -3,7 +3,7 @@
 if (document.getElementById('void-check-update')) {
     var container = document.getElementById('void-check-update');
     var ajax = new XMLHttpRequest();
-    ajax.open('get', 'https://api.github.com/repos/Geek0ne/Typecho-Theme-VOID/releases/latest');
+    ajax.open('get', 'https://api.github.com/repos/Geek0ne/VOID/releases/latest');
     ajax.send();
     var parseVer = function (v) {
         return String(v).replace(/^v/i, '').split('.').map(function (n) {

@@ -2,12 +2,12 @@
 /**
  * VOID：无类型
  * 
- * 作者：<a href="https://www.imalan.cn">熊猫小A</a>
+ * 作者：<a href="https://github.com/Geek0ne">Geek0ne</a>
  * 
  * @package     Typecho-Theme-VOID
- * @author      熊猫小A
+ * @author      Geek0ne
  * @version     3.5.3
- * @link        https://blog.imalan.cn/archives/247/
+ * @link        https://github.com/Geek0ne/VOID
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $setting = $GLOBALS['VOIDSetting']; 

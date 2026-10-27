@@ -119,7 +119,7 @@ npm run build
 或者直接取 Release 里的成品包：
 
 ```bash
-wget https://github.com/AlanDecode/Typecho-Theme-VOID/releases/download/3.51/VOID-3.5.1.zip
+wget https://github.com/Geek0ne/VOID/releases/download/3.5.3/VOID.zip
 ```
 
 ---

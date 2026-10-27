@@ -4,7 +4,7 @@
  *
  * 底栏
  *
- * @author      熊猫小A
+ * @author      Geek0ne
  * @version     2019-01-15 0.1
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
@@ -17,7 +17,7 @@ $setting = $GLOBALS['VOIDSetting'];
                     <p>感谢陪伴：<span id="uptime"></span></p>
                 </section>
                 <section>
-                    <p>Powered by <a href="http://typecho.org/">Typecho</a> • <a href="https://blog.imalan.cn/archives/247/">Theme VOID</a></p>
+                    <p>Powered by <a href="http://typecho.org/">Typecho</a> • <a href="https://github.com/Geek0ne/VOID">Theme VOID</a></p>
                     <p><?php echo $setting['footer']; ?></p>
                 </section>
             </div>
