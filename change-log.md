@@ -1,5 +1,21 @@
 # Change log | 更新日志
 
+**🍰 2026-10-27 Version 3.5.3**
+
+安全、兼容性与工程化维护版本，基于 3.5.1：
+
+* 安全：新增 `Utils::esc()` 输出转义，头图/摘要等自定义字段全部转义后输出；修复 `data-image`/`data-excerpt` 等处的存储型 XSS 输出面
+* 安全：`brandFont` 仅允许 http(s) 或站内相对 URL，字体样式/字重白名单校验；高级设置数字字段强制整型；Twitter ID 校验
+* 安全：随主题提供 `.htaccess`（安全响应头、目录保护、隐藏文件拒绝、缓存与压缩）
+* 兼容：适配 Typecho 1.3 / PHP 8.x，修复评论父级内容接口签名不一致导致的 Fatal error
+* 兼容：修复搜索/分类/首页等列表页因永久链接计算触发的 Router 异常
+* 兼容：修复 PHP 8 未定义键告警、评论链接/取消回复链接错误；移除全局 `error_reporting(0)` 错误屏蔽
+* 新增：`sitemap.php` 站点地图（支持 `?type=post|page|all`、`?days=N`，按路由输出正确永久链接）与 `robots.txt` 模板
+* 优化：SEO 标签补全（`rel=canonical`、`og:locale`、`og:image:alt`、`twitter:image:alt`、`article:author` 等），无头图时以主题图标作为 `og:image`
+* 修复：夜间模式切换时的首屏白屏闪烁（前置内联脚本）
+* 工程：前端构建产物纳入版本库，克隆即可部署；工具链迁移至 dart-sass，新增 CI（PHP lint、未转义输出守卫、构建校验）
+* 调整：后台更新检查改用本仓库 Releases；版本号统一为 3.5.3
+
 **🍰 2020-07-04 Version 3.5.1**
 
 * 修复：iframe 尺寸错误（#42）
