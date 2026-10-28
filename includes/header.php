@@ -11,33 +11,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $setting = $GLOBALS['VOIDSetting'];
 $banner = $setting['defaultBanner'];
 
-/**
- * 在样式生效前定色，避免暗色模式下的白屏闪烁。
- *
- * 判定顺序：
- *   1. 强制亮色 (colorScheme==2) -> 直接返回
- *   2. 用户手动切换过（Cookie）-> 以 Cookie 为准
- *   3. 跟随系统且系统为暗色 -> 暗色
- *
- * 纯内联脚本，不引入额外请求；无 JS 环境下会自然回落到服务端渲染结果。
- *
- * 注意：本文件必须在 head.php 之前加载，供 <head> 内的定色脚本使用。
- */
-$inlineColorScheme = '
-(function(){
-    var mode = ' . (int) $setting['colorScheme'] . ';
-    if (mode === 2) { return; }
-    var dark = false;
-    try {
-        var c = document.cookie.match(/(?:^|; )theme_dark=([^;]*)/);
-        if (c) { dark = (decodeURIComponent(c[1]) === "1"); }
-        else if (' . ($setting['followSystemColorScheme'] ? 'true' : 'false') . ' && window.matchMedia) {
-            dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        }
-    } catch (e) {}
-    if (dark) { document.documentElement.className += " theme-dark"; }
-})();';
-
 if($this->is('post') || $this->is('page')) {
     $banner = $this->fields->bannerStyle < 2 ? $this->fields->banner : '';
 }
@@ -112,7 +85,6 @@ if($this->is('post') || $this->is('page')) {
                     onclick="<?php if(!Utils::isPluginAvailable('ExSearch')) echo 'VOID_Ui.toggleSearch(this);'; ?>">
                     <i class="voidicon-search"></i>
                 </a>
-                <a target="_self" href="javascript:void(0);" id="toggle-setting" onclick="VOID_Ui.toggleSettingPanel();"><i class="voidicon-cog"></i></a>
             </nav>
         </div>
         <div class="mobile-search-form">

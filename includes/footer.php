@@ -23,84 +23,17 @@ $setting = $GLOBALS['VOIDSetting'];
             </div>
         </footer>
 
-        <!--侧边控制按钮-->
+        <!--侧边控制按钮（仅保留：回顶部、文章目录伸缩）-->
         <aside id="ctrler-panel">
             <div class="ctrler-item" id="go-top">
                 <a target="_self" aria-label="返回顶部" href="javascript:void(0);" style="transform: translateX(-2px);" onclick="VOID_SmoothScroller.scrollTo(0);"><i class="voidicon-up"></i></a>
             </div>
 
-            <?php if($this->user->hasLogin()): ?>
-                <div class="ctrler-item hidden-xs">
-                    <a target="_blank" aria-label="进入后台" href="<?php $this->options->adminUrl(); ?>" style="transform: translateX(-2px);"><i class="voidicon-login"></i></a>
-                </div>
-                <div class="ctrler-item hidden-xs">
-                    <a target="_blank" aria-label="管理评论" href="<?php $this->options->adminUrl('manage-comments.php'); ?>" style="transform: translateX(-2px);"><i class="voidicon-comment"></i></a>
-                </div>
-            <?php endif; ?>
-
-            <div aria-label="展开或关闭设置面板" id="toggle-setting-pc" class="ctrler-item hidden-xs">
-                <a target="_self" href="javascript:void(0);" style="transform: translateX(-2px);" onclick="VOID_Ui.toggleSettingPanel();"><i class="voidicon-cog"></i></a>
-            </div>
             <div aria-label="展开或关闭文章目录" class="ctrler-item" id="toggle-toc">
                 <a target="_self" href="javascript:void(0);" style="margin-left: -2px" onclick="TOC.toggle()"><i class="voidicon-left"></i></a>
             </div>
         </aside>
 
-        <!--站点设置面板-->
-        <aside hidden id="setting-panel">
-            <section>
-                <div id="toggle-night">
-                    <a target="_self" href="javascript:void(0)" onclick="VOID_Ui.DarkModeSwitcher.toggleByHand();"><i></i></a>
-                </div>
-                <div id="adjust-text-container">
-                    <div class="adjust-text-item">
-                        <a target="_self" href="javascript:void(0)" onclick="VOID_Ui.adjustTextsize(false);"><i class="voidicon-font"></i>-</a>
-                        <span id="current_textsize"></span>
-                        <a target="_self" href="javascript:void(0)" onclick="VOID_Ui.adjustTextsize(true);"><i class="voidicon-font"></i>+</a>
-                    </div>
-                    <div class="adjust-text-item">
-                        <a target="_self" class="font-indicator <?php if(!Utils::isSerif($setting)) echo ' checked'; ?>" href="javascript:void(0)" onclick="VOID_Ui.toggleSerif(this, false);">Sans</a>
-                        <a target="_self" class="font-indicator <?php if(Utils::isSerif($setting)) echo ' checked'; ?>" href="javascript:void(0)" onclick="VOID_Ui.toggleSerif(this, true);">Serif</a>
-                    </div>
-                </div>
-            </section>
-            <section id="links">
-                <?php if(!$this->user->hasLogin()): ?>
-                    <a target="_self" class="link" href="javascript:void(0)" onclick="VOID_Ui.toggleLoginForm()"><i class="voidicon-user"></i></a>       
-                <?php endif; ?>
-                <a class="link" title="RSS" target="_blank" href="<?php $this->options->feedUrl(); ?>"><i class="voidicon-rss"></i></a>
-                <?php
-                    foreach ($setting['link'] as $link) {
-                        echo "<a class=\"link\" title=\"{$link['name']}\" target=\"{$link['target']}\" href=\"{$link['href']}\"><i class=\"voidicon-{$link['icon']}\"></i></a>";
-                    }
-                ?>
-            </section>
-            <section id="login-panel" <?php if($this->user->hasLogin()) echo 'class="force-show"'; ?>>
-                <?php if(!$this->user->hasLogin()): ?>
-                    <form action="<?php $this->options->loginAction()?>" id="loggin-form" method="post" name="login" role="form">
-                        <div id="loggin-inputs">
-                            <input type="text" name="name" autocomplete="username" placeholder="请输入用户名" required/>
-                            <input type="password" name="password" autocomplete="current-password" placeholder="请输入密码" required/>
-                            <input type="hidden" name="referer" value="<?php 
-                                if($this->is('index')) $this->options->siteUrl();
-                                elseif($this->is('single')) $this->permalink();
-                                else echo Utils::esc(Typecho_Common::url($this->request->getRequestUri(), $this->options->index));
-                            ?>">
-                        </div>
-                        <div class="buttons" id="loggin-buttons">
-                            <button class="btn btn-normal" type="button" onclick="$('#login-panel').removeClass('show');$('#setting-panel').removeClass('show')">关闭</button>
-                            <button class="btn btn-normal" type="submit" onclick="VOID_Ui.rememberPos()">登录</button>
-                            <span hidden id="wait" class="btn btn-normal">请稍等……</span>
-                        </div>
-                    </form>
-                <?php else: ?>
-                    <div class="buttons" id="manage-buttons">
-                        <a class="btn btn-normal" no-pjax target="_blank" href="<?php $this->options->adminUrl(); ?>">后台</a>
-                        <a class="btn btn-normal" no-pjax title="登出" onclick="VOID_Ui.rememberPos()" href="<?php $this->options->logoutUrl(); ?>">登出</a>
-                    </div>
-                <?php endif; ?> 
-            </section> 
-        </aside>
 
         <?php if(!empty($setting['serviceworker'])): ?>
         <script>
