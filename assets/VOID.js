@@ -22,6 +22,14 @@ var VOID_Content = {
     // 解析文章目录
     parseTOC: function () {
         if ($('.TOC').length > 0) {
+            // 为缺少锚点的标题生成 id
+            // tocbot 的目录链接与高亮定位都依赖标题 id，缺失时链接会退化为 "#"
+            // 导致：点击不跳转、高亮永远停在第一项
+            $('div.articleBody').find('h2, h3, h4, h5').each(function (index) {
+                if (!this.id) {
+                    this.id = 'toc-heading-' + index;
+                }
+            });
             var toc_option = {
                 // Where to render the table of contents.
                 tocSelector: '.TOC',
@@ -30,7 +38,9 @@ var VOID_Content = {
                 // Which headings to grab inside of the contentSelector element.
                 headingSelector: 'h2, h3, h4, h5',
                 // 收缩深度
-                collapseDepth: 6
+                collapseDepth: 6,
+                // 固定顶栏高度，修正高亮判定与跳转落点
+                headingsOffset: 60
             };
             tocbot.init(toc_option);
             $.each($('.toc-link'), function(i, item){
