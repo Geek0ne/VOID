@@ -10,6 +10,33 @@
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $setting = $GLOBALS['VOIDSetting']; 
 
+/**
+ * 在样式生效前定色，避免暗色模式下的白屏闪烁。
+ *
+ * 判定顺序：
+ *   1. 强制亮色 (colorScheme==2) -> 直接返回
+ *   2. 用户手动切换过（Cookie）-> 以 Cookie 为准
+ *   3. 跟随系统且系统为暗色 -> 暗色
+ *
+ * 纯内联脚本，不引入额外请求；无 JS 环境下会自然回落到服务端渲染结果。
+ *
+ * （本变量需在 head.php 内使用，故计算逻辑放在本文件。）
+ */
+$inlineColorScheme = '
+(function(){
+    var mode = ' . (int) $setting['colorScheme'] . ';
+    if (mode === 2) { return; }
+    var dark = false;
+    try {
+        var c = document.cookie.match(/(?:^|; )theme_dark=([^;]*)/);
+        if (c) { dark = (decodeURIComponent(c[1]) === "1"); }
+        else if (' . ($setting['followSystemColorScheme'] ? 'true' : 'false') . ' && window.matchMedia) {
+            dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        }
+    } catch (e) {}
+    if (dark) { document.documentElement.className += " theme-dark"; }
+})();';
+
 if (isset($_POST['void_action'])) {
     if ($_POST['void_action'] == 'getLoginAction') {
         echo $this->options->loginAction;
@@ -178,13 +205,14 @@ if (isset($_POST['void_action'])) {
     <?php endif; ?>
     <?php endif; ?>
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet"></noscript>
     <?php if(Utils::isSerif($setting)): ?>
-        <link id="stylesheet_noto" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,400,700&display=swap&subset=chinese-simplified" rel="stylesheet">
+        <link id="stylesheet_noto" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,400,700&display=swap&subset=chinese-simplified" rel="stylesheet" media="print" onload="this.media='all'">
     <?php endif; ?>
 
     <?php if($setting['useFiraCodeFont']): ?>
-        <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
         <style>.yue code, .yue tt {font-family: "Fira Code", Menlo, Monaco, Consolas, "Courier New", monospace}</style>
     <?php endif; ?>
 

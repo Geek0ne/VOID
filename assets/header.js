@@ -172,7 +172,8 @@ VOID_SmoothScroller = {
     raf: null,
 
     move: function () {
-        var cur = document.documentElement.scrollTop;
+        var el = document.scrollingElement || document.documentElement;
+        var cur = el.scrollTop;
         var step = Math.ceil(Math.abs(VOID_SmoothScroller.target - cur) / VOID_SmoothScroller.SMOOTH);
 
         if (Math.abs(VOID_SmoothScroller.target - cur) < 1) {
@@ -182,7 +183,7 @@ VOID_SmoothScroller = {
         }
 
         cur >= VOID_SmoothScroller.target ? cur -= step : cur += step;
-        document.documentElement.scrollTop = cur;
+        el.scrollTop = cur;
         VOID_SmoothScroller.raf = requestAnimationFrame(VOID_SmoothScroller.move);
     },
 
@@ -216,11 +217,12 @@ VOID_SmoothScroller = {
 
     scrollTo: function (target, offset) {
         if (target === null) return;
+        var el = document.scrollingElement || document.documentElement;
         if (typeof(target) == 'object') {
-            target = target.getBoundingClientRect().top + document.documentElement.scrollTop;
+            target = target.getBoundingClientRect().top + el.scrollTop;
         } else if (typeof(target) == 'string') {
             target = document.querySelector(target).getBoundingClientRect().top 
-                + document.documentElement.scrollTop;
+                + el.scrollTop;
         }
         if (typeof(offset) == 'number') {
             target += offset;
@@ -228,7 +230,7 @@ VOID_SmoothScroller = {
         // 若超出顶部或无法到达
         target = Math.max(target, 0);
         target = Math.min(target, 
-            document.documentElement.getBoundingClientRect().height - document.documentElement.clientHeight);
+            Math.max(el.scrollHeight - el.clientHeight, 0));
 
         VOID_SmoothScroller.addEventListener();
         VOID_SmoothScroller.target = target;
@@ -238,7 +240,7 @@ VOID_SmoothScroller = {
     stop: function (event) {
         if (typeof(event) != 'undefined')
             event.preventDefault();
-        VOID_SmoothScroller.scrollTo(document.documentElement.scrollTop);
+        VOID_SmoothScroller.scrollTo((document.scrollingElement || document.documentElement).scrollTop);
     }
 };
 
