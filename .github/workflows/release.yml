@@ -15,12 +15,35 @@ jobs:
 
       - name: Create GitHub Release
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: *** github.token }}
         run: |
           TAG="${GITHUB_REF_NAME}"
           NOTES_FILE="RELEASE-NOTES-${TAG}.md"
-          if [ -f "$NOTES_FILE" ]; then
-            gh release create "$TAG" --title "VOID ${TAG#v}" --notes-file "$NOTES_FILE"
-          else
-            gh release create "$TAG" --title "VOID ${TAG#v}" --generate-notes
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            if [ -f "$NOTES_FILE" ]; then
+              gh release create "$TAG" --title "VOID ${TAG#v}" --notes-file "$NOTES_FILE"
+            else
+              gh release create "$TAG" --title "VOID ${TAG#v}" --generate-notes
+            fi
           fi
+
+      - name: Build distribution package
+        run: |
+          set -e
+          # 严格从 tag 指向的已提交内容打包（未提交/未推送的改动不会进入发行包）
+          mkdir -p dist/extract "dist/pkg/1.主题/VOID" "dist/pkg/2.配套插件/VOID"
+          git archive --format=tar HEAD | tar -x -C dist/extract
+          cd dist/extract
+          for item in $(ls -A | grep -vE '^(\.github|\.eslintrc\.json|\.gitattributes|\.gitignore|\.vscode|Makefile|RELEASE-NOTES.*\.md|gulpfile\.js|package-lock\.json|package\.json|plugin)$'); do
+            cp -r "$item" "../pkg/1.主题/VOID/"
+          done
+          cp -r plugin/VOID/. "../pkg/2.配套插件/VOID/"
+          cd ../pkg
+          zip -qr ../VOID.zip "1.主题" "2.配套插件"
+          cd ../..
+          echo "dist/VOID.zip 打包完成: $(du -h dist/VOID.zip | cut -f1)"
+
+      - name: Upload release asset
+        env:
+          GH_TOKEN: *** github.token }}
+        run: gh release upload "${GITHUB_REF_NAME}" dist/VOID.zip --clobber
