@@ -732,3 +732,43 @@ iframe {
 @import "parts/footer";
 @import "parts/special";
 @import "parts/voidicon"
+/* ===== 自定义增强（2026-10-30）=====
+   1. 移动端文章正文字号调小两号
+   2. 行内代码（`code`）换用醒目配色，替代原灰色背景
+   3. 正文链接：未访问蓝色、已访问紫色（仿百度）
+   ===================================== */
+@media screen and (max-width: 767.5px) {
+    .yue {
+        font-size: 16px;
+        [fontsize="1"] & {
+            font-size: 12px;
+        }
+        [fontsize="2"] & {
+            font-size: 14px;
+        }
+        [fontsize="4"] & {
+            font-size: 18px;
+        }
+        [fontsize="5"] & {
+            font-size: 20px;
+        }
+    }
+}
+
+
+.yue a {
+    &:link {
+        color: #0000cc;
+    }
+    &:visited {
+        color: #660099;
+    }
+    .theme-dark & {
+        &:link {
+            color: #7ea6ff;
+        }
+        &:visited {
+            color: #c58af9;
+        }
+    }
+}
