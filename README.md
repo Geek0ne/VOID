@@ -1,4 +1,4 @@
-# Typecho Theme VOID 3.5.4
+# Typecho Theme VOID 3.5.5
 
 > ✏ 一款简洁优雅的 Typecho 主题
 
@@ -204,6 +204,15 @@ gulp build
 </details>
 
 ## 更新日志
+
+**🍰 2026-10-29 Version 3.5.5**
+
+修复与体验优化版本：
+
+* 修复：首页刷新闪现无样式页面（FOUC）——页面模板先输出 `<body>` 再输出 `<!DOCTYPE>/<head>`，浏览器落入怪异模式(Quirks)导致 CSS 不再阻塞渲染；修正 `index/post/page/Archives` 模板加载顺序（`head.php` 先于 `header.php`），Google Fonts 改为异步加载不阻塞首屏
+* 修复：右下角"回到顶部"按钮点击无反应——怪异模式下 `documentElement.scrollTop` 恒为 0 导致平滑滚动立即终止；平滑滚动改用 `document.scrollingElement`，任何模式下均可靠
+* 修复：文章目录高亮永远停留在第一项、点击目录标题不跳转——文章标题缺少 id 锚点导致 tocbot 目录链接退化为 `#`；现在自动为无锚点标题生成 id（`toc-heading-N`），并新增 `headingsOffset: 60` 修正固定顶栏下的高亮判定与跳转落点
+* 调整：移除右下角齿轮设置面板（手动明暗切换/字号调节/Sans-Serif 字体切换/RSS 友链）及前台登录表单、后台入口、已登录态快捷按钮等冗余项，仅保留"回到顶部"与"文章目录伸缩"按钮（无目录时目录按钮自动隐藏）
 
 **🍰 2026-10-27 Version 3.5.4**
 
