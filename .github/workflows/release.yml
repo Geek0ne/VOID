@@ -1,0 +1,26 @@
+name: Create Release on Tag
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          NOTES_FILE="RELEASE-NOTES-${TAG}.md"
+          if [ -f "$NOTES_FILE" ]; then
+            gh release create "$TAG" --title "VOID ${TAG#v}" --notes-file "$NOTES_FILE"
+          else
+            gh release create "$TAG" --title "VOID ${TAG#v}" --generate-notes
+          fi
