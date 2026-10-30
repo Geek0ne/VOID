@@ -6,3 +6,17 @@
 .yue a:visited{color:#660099}
 .theme-dark .yue a:link{color:#7ea6ff}
 .theme-dark .yue a:visited{color:#c58af9}
+
+/* ===== 代码块增强（2026-10-30）：右上角语言标签 + 一键复制 ===== */
+.yue pre .code-toolbar{position:absolute;top:0;right:0;height:32px;display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:0 12px 0 16px;z-index:2;user-select:none}
+body:not(.macStyleCodeBlock) .yue pre .code-toolbar{top:6px;right:8px;height:28px;padding:0 10px;border-radius:6px;background:rgba(255,255,255,.72);backdrop-filter:blur(6px)}
+.yue pre .code-lang{font-family:Menlo,Monaco,Consolas,"Courier New",monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(0,0,0,.32)}
+.yue pre .code-copy{display:inline-flex;align-items:center;gap:4px;border:none;background:transparent;cursor:pointer;font-size:12px;line-height:1;padding:4px 6px;border-radius:4px;color:rgba(0,0,0,.35);transition:.2s ease}
+.yue pre .code-copy:hover{color:rgba(0,0,0,.78);background:rgba(0,0,0,.06)}
+.yue pre .code-copy.copied{color:#3aa952}
+.yue pre .code-copy svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.theme-dark .yue pre .code-lang{color:rgba(255,255,255,.35)}
+.theme-dark .yue pre .code-copy{color:rgba(255,255,255,.35)}
+.theme-dark .yue pre .code-copy:hover{color:#eee;background:rgba(255,255,255,.08)}
+.theme-dark .yue pre .code-copy.copied{color:#7ec699}
+body:not(.macStyleCodeBlock).theme-dark .yue pre .code-toolbar{background:rgba(30,30,30,.72)}
