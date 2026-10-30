@@ -1,9 +1,9 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 /**
- * VOID 主题配套插件
+ * VOID-Plus 主题配套插件
  * 
- * @package VOID
+ * @package VOID-Plus
  * @author 熊猫小A
  * @version 1.2
  * @link https://blog.imalan.cn
@@ -13,7 +13,7 @@ require_once('libs/WordCount.php');
 require_once('libs/IP.php');
 require_once('libs/ParseImg.php');
 
-class VOID_Plugin implements Typecho_Plugin_Interface
+class VOIDPlus_Plugin implements Typecho_Plugin_Interface
 {
     public static $VERSION = 1.2;
 
@@ -61,7 +61,7 @@ class VOID_Plugin implements Typecho_Plugin_Interface
         }
 
         /** 图片附件尺寸解析，注册 hook */
-        Typecho_Plugin::factory('Widget_Upload')->upload = array('VOID_Plugin', 'upload');
+        Typecho_Plugin::factory('Widget_Upload')->upload = array('VOIDPlus_Plugin', 'upload');
         
         /** 字数统计 */
         // contents 表中若无 wordCount 字段则添加
@@ -69,12 +69,12 @@ class VOID_Plugin implements Typecho_Plugin_Interface
             self::queryAndCatch('ALTER TABLE `'. $prefix .'contents` ADD COLUMN `wordCount` INT(10) DEFAULT 0;');
         }
         // 更新一次字数统计
-        VOID_WordCount::updateAllWordCount();
+        VOIDPlus_WordCount::updateAllWordCount();
         // 注册 hook
-        Typecho_Plugin::factory('Widget_Contents_Post_Edit')->finishPublish = array('VOID_Plugin', 'updateContent');
-        Typecho_Plugin::factory('Widget_Contents_Page_Edit')->finishPublish = array('VOID_Plugin', 'updateContent');
+        Typecho_Plugin::factory('Widget_Contents_Post_Edit')->finishPublish = array('VOIDPlus_Plugin', 'updateContent');
+        Typecho_Plugin::factory('Widget_Contents_Page_Edit')->finishPublish = array('VOIDPlus_Plugin', 'updateContent');
         // 加入查询
-        Typecho_Plugin::factory('Widget_Archive')->___wordCount = array('VOID_Plugin', 'wordCount');
+        Typecho_Plugin::factory('Widget_Archive')->___wordCount = array('VOIDPlus_Plugin', 'wordCount');
 
         /** 文章点赞 */
         // 创建字段
@@ -82,7 +82,7 @@ class VOID_Plugin implements Typecho_Plugin_Interface
             self::queryAndCatch('ALTER TABLE `'. $prefix .'contents` ADD COLUMN `likes` INT(10) DEFAULT 0;');
         }
         // 加入查询
-        Typecho_Plugin::factory('Widget_Archive')->___likes = array('VOID_Plugin', 'likes');
+        Typecho_Plugin::factory('Widget_Archive')->___likes = array('VOIDPlus_Plugin', 'likes');
         
         /** 评论赞踩 */
         // 创建字段
@@ -99,9 +99,9 @@ class VOID_Plugin implements Typecho_Plugin_Interface
             self::queryAndCatch('ALTER TABLE `'. $prefix .'contents` ADD COLUMN `viewsNum` INT(10) DEFAULT 0;');
         }
         //增加浏览数
-        Typecho_Plugin::factory('Widget_Archive')->beforeRender = array('VOID_Plugin', 'updateViewCount');
+        Typecho_Plugin::factory('Widget_Archive')->beforeRender = array('VOIDPlus_Plugin', 'updateViewCount');
         // 加入查询
-        Typecho_Plugin::factory('Widget_Archive')->___viewsNum = array('VOID_Plugin', 'viewsNum');
+        Typecho_Plugin::factory('Widget_Archive')->___viewsNum = array('VOIDPlus_Plugin', 'viewsNum');
 
         /** 点赞与投票数据库 */
         // 创建表，保存点赞与投票相关信息
@@ -132,13 +132,13 @@ class VOID_Plugin implements Typecho_Plugin_Interface
         }
 
         // 添加一个面板，展示互动信息，例如评论赞踩、文章点赞
-        Helper::addPanel(3, 'VOID/pages/showActivity.php', '互动', '查看访客互动', 'administrator');
+        Helper::addPanel(3, 'VOIDPlus/pages/showActivity.php', '互动', '查看访客互动', 'administrator');
 
         // 添加投票路由，文章与评论
-        Helper::addAction('void', 'VOID_Action');
+        Helper::addAction('void', 'VOIDPlus_Action');
 
         // 评论列表显示来源
-        Typecho_Plugin::factory('Widget_Comments_Admin')->callIp = array('VOID_Plugin', 'commentLocation');
+        Typecho_Plugin::factory('Widget_Comments_Admin')->callIp = array('VOIDPlus_Plugin', 'commentLocation');
     }
 
     /**
@@ -152,8 +152,8 @@ class VOID_Plugin implements Typecho_Plugin_Interface
     public static function deactivate()
 	{
         Helper::removeAction('void');
-        Helper::removeAction('void_vote');
-        Helper::removePanel(3, 'VOID/pages/showActivity.php');
+        Helper::removeAction('voidplus_vote');
+        Helper::removePanel(3, 'VOIDPlus/pages/showActivity.php');
     }
     
     /**
@@ -225,8 +225,8 @@ class VOID_Plugin implements Typecho_Plugin_Interface
      */
     public static function updateContent($contents, $widget)
     {
-        VOID_WordCount::wordCountByCid($widget->cid);
-        $ret = VOID_ParseImgInfo::parse($widget->cid);
+        VOIDPlus_WordCount::wordCountByCid($widget->cid);
+        $ret = VOIDPlus_ParseImgInfo::parse($widget->cid);
     }
 
     /**
@@ -238,7 +238,7 @@ class VOID_Plugin implements Typecho_Plugin_Interface
     public static function updateViewCount($archive) {
         if($archive->is('single')){
             $cid = $archive->cid;
-            $views = Typecho_Cookie::get('__void_post_views');
+            $views = Typecho_Cookie::get('__voidplus_post_views');
             if(empty($views)){
                 $views = array();
             } else {
@@ -254,7 +254,7 @@ class VOID_Plugin implements Typecho_Plugin_Interface
                     ->where('cid = ?', $cid));
                 array_push($views, $cid);
                 $views = implode(',', $views);
-                Typecho_Cookie::set('__void_post_views', $views); //记录查看cookie
+                Typecho_Cookie::set('__voidplus_post_views', $views); //记录查看cookie
             }
         }
     }

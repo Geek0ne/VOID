@@ -8,7 +8,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 require_once 'simple_html_dom.php';
 
-Class VOID_ParseImgInfo
+Class VOIDPlus_ParseImgInfo
 {
     /**
      * 解析 $cid 指定文章中的图片数据
@@ -34,7 +34,7 @@ Class VOID_ParseImgInfo
         $doc = str_get_html($html);
         $imgArr = $doc->find('img');
 
-        $limit = Helper::options()->plugin('VOID')->parseImgLimit;
+        $limit = Helper::options()->plugin('VOIDPlus')->parseImgLimit;
         if (empty($limit)) $limit = 10;
 
         $result = array(0, 0, 0, 0);

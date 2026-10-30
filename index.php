@@ -4,13 +4,13 @@
  * 
  * 作者：<a href="https://github.com/Geek0ne">Geek0ne</a>
  * 
- * @package     Typecho-Theme-VOID
+ * @package     Typecho-Theme-VOID-Plus
  * @author      Geek0ne
  * @version     3.5.6
  * @link        https://github.com/Geek0ne/VOID-Plus
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
-$setting = $GLOBALS['VOIDSetting']; 
+$setting = $GLOBALS['VOIDPlusSetting']; 
 
 if(!Utils::isPjax()){
     $this->need('includes/head.php');
@@ -70,7 +70,7 @@ if(!Utils::isPjax()){
                             <div class="content-wrap">
                                 <div class="post-meta-index">
                                     <time datetime="<?php echo date('c', $this->created); ?>"><?php echo date('M d, Y', $this->created); ?></time>
-                                    <?php if($setting['VOIDPlugin']): ?>
+                                    <?php if($setting['VOIDPlusPlugin']): ?>
                                         <span class="word-count">+ <?php echo $this->wordCount; ?> 字</span>
                                     <?php endif; ?>
                                 </div>
@@ -101,7 +101,7 @@ if(!Utils::isPjax()){
                         </a>
                     <?php endif; ?>
                 </li>
-                <script>VOID_Ui.MasonryCtrler.watch("p-<?php $this->cid(); ?>");</script>
+                <script>VOIDPlus_Ui.MasonryCtrler.watch("p-<?php $this->cid(); ?>");</script>
             <?php endwhile; ?>
             </ul>
         </section>

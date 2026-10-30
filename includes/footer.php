@@ -8,7 +8,7 @@
  * @version     2019-01-15 0.1
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
-$setting = $GLOBALS['VOIDSetting'];
+$setting = $GLOBALS['VOIDPlusSetting'];
 ?>
         <footer>
             <div class="container wide">
@@ -17,7 +17,7 @@ $setting = $GLOBALS['VOIDSetting'];
                     <p>感谢陪伴：<span id="uptime"></span></p>
                 </section>
                 <section>
-                    <p>Powered by <a href="http://typecho.org/">Typecho</a> • <a href="https://github.com/Geek0ne/VOID-Plus">Theme VOID</a></p>
+                    <p>Powered by <a href="http://typecho.org/">Typecho</a> • <a href="https://github.com/Geek0ne/VOID-Plus">Theme VOID-Plus</a></p>
                     <p><?php echo $setting['footer']; ?></p>
                 </section>
             </div>
@@ -26,7 +26,7 @@ $setting = $GLOBALS['VOIDSetting'];
         <!--侧边控制按钮（仅保留：回顶部、文章目录伸缩）-->
         <aside id="ctrler-panel">
             <div class="ctrler-item" id="go-top">
-                <a target="_self" aria-label="返回顶部" href="javascript:void(0);" style="transform: translateX(-2px);" onclick="VOID_SmoothScroller.scrollTo(0);"><i class="voidicon-up"></i></a>
+                <a target="_self" aria-label="返回顶部" href="javascript:void(0);" style="transform: translateX(-2px);" onclick="VOIDPlus_SmoothScroller.scrollTo(0);"><i class="voidicon-up"></i></a>
             </div>
 
             <div aria-label="展开或关闭文章目录" class="ctrler-item" id="toggle-toc">
@@ -68,7 +68,7 @@ $setting = $GLOBALS['VOIDSetting'];
         <?php if($setting['enableMath']): ?>
         <script src='<?php Utils::indexTheme('/assets/libs/mathjax/2.7.4/MathJax.js'); ?>'></script>
         <?php endif; ?>
-        <script src="<?php Utils::indexTheme('/assets/VOID.js'); ?>"></script>
+        <script src="<?php Utils::indexTheme('/assets/VOID-Plus.js'); ?>"></script>
         <script>
         if($(".OwO").length > 0){
             new OwO({

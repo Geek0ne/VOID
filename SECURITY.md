@@ -1,4 +1,4 @@
-# VOID 主题 · 加固与现代化分支
+# VOID-Plus 主题 · 加固与现代化分支
 
 > 基于 [`AlanDecode/Typecho-Theme-VOID`](https://github.com/AlanDecode/Typecho-Theme-VOID) 3.5.1
 > 原仓库自 2023-04 起停更，本分支补齐安全加固、SEO 与构建链维护。
@@ -15,7 +15,7 @@
 | **属性注入** | 封面图 `src` / `data-src` 共 6 处裸输出 | 统一经 `Utils::esc()` |
 | **JSON-LD 注入** | `includes/ldjson.php` 的 `description`、`includes/archives.php` 的 `excerpt` 裸输出 | 已转义 |
 | **CSS 注入** | 后台 `brandFont` 的 `src` / `style` / `weight` 直接进 `<style>` | 限定 `http(s)://` 或 `/` 开头；`style`、`weight` 走白名单 |
-| **JS 注入** | `VOIDConfig` 中 `darkModeTime`、`indexStyle`、`version` 未强制类型 | 全部 `(int)` 强转 |
+| **JS 注入** | `VOIDPlusConfig` 中 `darkModeTime`、`indexStyle`、`version` 未强制类型 | 全部 `(int)` 强转 |
 | **Twitter 账号** | `twitterId` 裸输出，且后台留空时会输出空 `@` | `trim` 去 `@` + 转义，留空则不输出该标签 |
 
 新增 `.htaccess`：安全响应头（`X-Frame-Options`、`CSP`、`nosniff`、`Referrer-Policy`、`Permissions-Policy`）、目录保护、隐藏文件拦截、静态缓存、压缩。
@@ -95,14 +95,14 @@ location ~ /\.(?!well-known) { deny all; }
 
 ### robots.txt
 
-把 `robots.txt.example` 复制到 **Typecho 根目录**（与 `index.php` 同级），并确认 `Sitemap:` 指向 `/usr/themes/VOID/sitemap.php`。
+把 `robots.txt.example` 复制到 **Typecho 根目录**（与 `index.php` 同级），并确认 `Sitemap:` 指向 `/usr/themes/VOID-Plus/sitemap.php`。
 
 ---
 
 ## 从源码构建
 
 **仓库不包含编译后的资源。** `index.php` 等模板会引用
-`assets/bundle.css`、`assets/VOID.css`、`assets/bundle.js`、
+`assets/bundle.css`、`assets/VOID-Plus.css`、`assets/bundle.js`、
 `assets/bundle-header.js`，这四个文件是 `npm run build` 的产物，
 被 `.gitignore` 排除——上游也是同样的做法，改由 Release 的
 `VOID-<版本>.zip` 分发。
@@ -119,7 +119,7 @@ npm run build
 或者直接取 Release 里的成品包：
 
 ```bash
-wget https://github.com/Geek0ne/VOID-Plus/releases/download/3.5.3/VOID.zip
+wget https://github.com/Geek0ne/VOID-Plus/releases/download/3.5.3/VOID-Plus.zip
 ```
 
 ---

@@ -32,8 +32,8 @@ function themeInit()
     Helper::options()->commentsOrder = 'DESC';
 }
 
-$GLOBALS['VOIDPluginREQ'] = 1.2;
-$GLOBALS['VOIDVersion'] = '3.5.6';
+$GLOBALS['VOIDPlusPluginREQ'] = 1.2;
+$GLOBALS['VOIDPlusVersion'] = '3.5.6';
 
 /**
  * 主题设置
@@ -49,12 +49,12 @@ function themeConfig($form)
         background: rgba(0,0,25,.025);
     }</style>';
 
-    if (!Utils::hasVOIDPlugin($GLOBALS['VOIDPluginREQ'])) {
-        echo '<p class="notice">未检测到合适的 VOID 插件！主题部分功能依赖插件支持，推荐安装以获得最佳体验。VOID 插件随主题发行包提供（VOID.zip 的 2.配套插件 文件夹），上传至 /usr/plugins 目录并启用即可。</p>';
+    if (!Utils::hasVOIDPlusPlugin($GLOBALS['VOIDPlusPluginREQ'])) {
+        echo '<p class="notice">未检测到合适的 VOID-Plus 插件！主题部分功能依赖插件支持，推荐安装以获得最佳体验。VOID-Plus 插件随主题发行包提供（VOID-Plus.zip 的 2.配套插件 文件夹），上传至 /usr/plugins 目录并启用即可。</p>';
     }
 
     echo '<p id="void-check-update" class="notice">正在检查更新……</p>';
-    echo '<script>var VOIDVersion="'.$GLOBALS['VOIDVersion'].'"</script>';
+    echo '<script>var VOIDPlusVersion="'.$GLOBALS['VOIDPlusVersion'].'"</script>';
     echo '<script src="'.Helper::options()->themeUrl.'/assets/check_update.js"></script>';
 
     $defaultBanner = new Typecho_Widget_Helper_Form_Element_Text('defaultBanner', null, '', '首页顶部大图', '可以填写随机图 API。');
@@ -89,7 +89,7 @@ function themeConfig($form)
     $form->addInput($pjax);
     $pjaxreload = new Typecho_Widget_Helper_Form_Element_Textarea('pjaxreload', null, null, 'PJAX 重载函数', '输入要重载的 JS，如果你发现站点有点不对劲，又不知道这个选项是啥意思，请关闭 PJAX 并留空此项。');
     $form->addInput($pjaxreload);
-    $serviceworker = new Typecho_Widget_Helper_Form_Element_Text('serviceworker', null, null, '自定义 Service Worker', '如果你知道这是什么，请把你的 SW 文件（例如主题 assets 文件夹下的 VOIDCacheRule.js）复制一份到<b>站点根目录</b>，并在这里填写文件名（例如 VOIDCacheRule.js）。若不知道该选项含义，请留空此项。');
+    $serviceworker = new Typecho_Widget_Helper_Form_Element_Text('serviceworker', null, null, '自定义 Service Worker', '如果你知道这是什么，请把你的 SW 文件（例如主题 assets 文件夹下的 VOID-CacheRule.js）复制一份到<b>站点根目录</b>，并在这里填写文件名（例如 VOID-CacheRule.js）。若不知道该选项含义，请留空此项。');
     $form->addInput($serviceworker);
 
     // 超高级设置
@@ -121,4 +121,4 @@ function themeFields(Typecho_Widget_Helper_Layout $layout)
     $layout->addItem($showTOC);
 }
 
-$GLOBALS['VOIDSetting'] = Utils::getVOIDSettings();
+$GLOBALS['VOIDPlusSetting'] = Utils::getVOIDPlusSettings();

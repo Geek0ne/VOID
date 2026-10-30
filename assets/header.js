@@ -16,7 +16,7 @@ TOC = {
     }
 };
 
-VOID_Util = {
+VOIDPlus_Util = {
     throttle: function (fn, delay, atleast) {
         var timer = null;
         var previous = null;
@@ -60,7 +60,7 @@ VOID_Util = {
         var indicator = document.createElement('div');
         indicator.className = 'dark-mode-state-indicator';
         document.body.appendChild(indicator);
-        return VOID_Util.getDeviceState(indicator) === 11;
+        return VOIDPlus_Util.getDeviceState(indicator) === 11;
     },
 
     setCookie: function (name, value, time) {
@@ -82,7 +82,7 @@ VOID_Util = {
     }
 };
 
-VOID_Lazyload = {
+VOIDPlus_Lazyload = {
     eventHandler: null,
 
     finish: function () {
@@ -90,14 +90,14 @@ VOID_Lazyload = {
     },
 
     addEventListener: function () {
-        if (!VOID_Lazyload.finish()) {
-            window.addEventListener('scroll',VOID_Lazyload.eventHandler);
+        if (!VOIDPlus_Lazyload.finish()) {
+            window.addEventListener('scroll',VOIDPlus_Lazyload.eventHandler);
         }
     },
 
     removeEventListener: function () {
-        if (VOID_Lazyload.finish())
-            window.removeEventListener('scroll', VOID_Lazyload.eventHandler);
+        if (VOIDPlus_Lazyload.finish())
+            window.removeEventListener('scroll', VOIDPlus_Lazyload.eventHandler);
     },
 
     inViewport: function (item) {
@@ -110,38 +110,38 @@ VOID_Lazyload = {
 
     callback: function () {
         $.each($('img.lazyload:not(.browserlevel-lazy):not(.loaded):not(.error)'), function (i, item) {
-            if (VOID_Lazyload.inViewport(item)) {
+            if (VOIDPlus_Lazyload.inViewport(item)) {
                 var img = new Image();
                 img.onload = function () {
                     $(item).attr('src', $(item).attr('data-src'));
                     $(item).addClass('loaded');
                     $(item).siblings('.blured-placeholder').addClass('loaded');
                     $(item).parent().addClass('loaded');
-                    VOID_Lazyload.removeEventListener();
+                    VOIDPlus_Lazyload.removeEventListener();
                     setTimeout(function () {
                         $(item).siblings('.remove-after').remove();
                     }, 1000);
                 };
                 img.onerror = function () {
                     $(item).addClass('error');
-                    VOID_Lazyload.removeEventListener();
+                    VOIDPlus_Lazyload.removeEventListener();
                 };
                 img.src = $(item).attr('data-src');
             }
         });
-        VOID_Lazyload.removeEventListener();
+        VOIDPlus_Lazyload.removeEventListener();
     },
 
     init: function () {
-        window.removeEventListener('scroll', VOID_Lazyload.eventHandler);
-        if (VOID_Lazyload.eventHandler == null)
-            VOID_Lazyload.eventHandler = VOID_Util.throttle(VOID_Lazyload.callback, 200, 500);
-        VOID_Lazyload.callback();
-        VOID_Lazyload.addEventListener();
+        window.removeEventListener('scroll', VOIDPlus_Lazyload.eventHandler);
+        if (VOIDPlus_Lazyload.eventHandler == null)
+            VOIDPlus_Lazyload.eventHandler = VOIDPlus_Util.throttle(VOIDPlus_Lazyload.callback, 200, 500);
+        VOIDPlus_Lazyload.callback();
+        VOIDPlus_Lazyload.addEventListener();
     }
 };
 
-VOID_BrowserLoadingLazy = {
+VOIDPlus_BrowserLoadingLazy = {
     loadedCallback: function (item) {
         $(item).addClass('loaded');
         $(item).parent().addClass('loaded');
@@ -153,10 +153,10 @@ VOID_BrowserLoadingLazy = {
     init: function () {
         $.each($('img.lazyload.browserlevel-lazy:not(.loaded):not(.error)'), function (i, item) {
             if (item.complete && item.naturalWidth !== 0) {
-                VOID_BrowserLoadingLazy.loadedCallback(item);
+                VOIDPlus_BrowserLoadingLazy.loadedCallback(item);
             } else {
                 item.onload = function () {
-                    VOID_BrowserLoadingLazy.loadedCallback(item);
+                    VOIDPlus_BrowserLoadingLazy.loadedCallback(item);
                 };
                 item.onerror = function () {
                     $(item).addClass('error');
@@ -166,7 +166,7 @@ VOID_BrowserLoadingLazy = {
     }
 };
 
-VOID_SmoothScroller = {
+VOIDPlus_SmoothScroller = {
     target: null,
     SMOOTH: 15,
     raf: null,
@@ -174,17 +174,17 @@ VOID_SmoothScroller = {
     move: function () {
         var el = document.scrollingElement || document.documentElement;
         var cur = el.scrollTop;
-        var step = Math.ceil(Math.abs(VOID_SmoothScroller.target - cur) / VOID_SmoothScroller.SMOOTH);
+        var step = Math.ceil(Math.abs(VOIDPlus_SmoothScroller.target - cur) / VOIDPlus_SmoothScroller.SMOOTH);
 
-        if (Math.abs(VOID_SmoothScroller.target - cur) < 1) {
-            VOID_SmoothScroller.removeEventListener();
-            cancelAnimationFrame(VOID_SmoothScroller.raf);
+        if (Math.abs(VOIDPlus_SmoothScroller.target - cur) < 1) {
+            VOIDPlus_SmoothScroller.removeEventListener();
+            cancelAnimationFrame(VOIDPlus_SmoothScroller.raf);
             return;
         }
 
-        cur >= VOID_SmoothScroller.target ? cur -= step : cur += step;
+        cur >= VOIDPlus_SmoothScroller.target ? cur -= step : cur += step;
         el.scrollTop = cur;
-        VOID_SmoothScroller.raf = requestAnimationFrame(VOID_SmoothScroller.move);
+        VOIDPlus_SmoothScroller.raf = requestAnimationFrame(VOIDPlus_SmoothScroller.move);
     },
 
     addEventListener: function () {
@@ -202,17 +202,17 @@ VOID_SmoothScroller = {
         } catch (err) {
             console.log(err);
         }
-        window.addEventListener('wheel', VOID_SmoothScroller.stop, 
+        window.addEventListener('wheel', VOIDPlus_SmoothScroller.stop, 
             passiveSupported ? { passive: false } : false);
         
-        window.addEventListener('mousedown', VOID_SmoothScroller.stop);
-        window.addEventListener('touchstart', VOID_SmoothScroller.stop);
+        window.addEventListener('mousedown', VOIDPlus_SmoothScroller.stop);
+        window.addEventListener('touchstart', VOIDPlus_SmoothScroller.stop);
     },
 
     removeEventListener: function () {
-        window.removeEventListener('wheel', VOID_SmoothScroller.stop);
-        window.removeEventListener('mousedown', VOID_SmoothScroller.stop);
-        window.removeEventListener('touchstart', VOID_SmoothScroller.stop);
+        window.removeEventListener('wheel', VOIDPlus_SmoothScroller.stop);
+        window.removeEventListener('mousedown', VOIDPlus_SmoothScroller.stop);
+        window.removeEventListener('touchstart', VOIDPlus_SmoothScroller.stop);
     },
 
     scrollTo: function (target, offset) {
@@ -232,19 +232,19 @@ VOID_SmoothScroller = {
         target = Math.min(target, 
             Math.max(el.scrollHeight - el.clientHeight, 0));
 
-        VOID_SmoothScroller.addEventListener();
-        VOID_SmoothScroller.target = target;
-        VOID_SmoothScroller.move();
+        VOIDPlus_SmoothScroller.addEventListener();
+        VOIDPlus_SmoothScroller.target = target;
+        VOIDPlus_SmoothScroller.move();
     },
 
     stop: function (event) {
         if (typeof(event) != 'undefined')
             event.preventDefault();
-        VOID_SmoothScroller.scrollTo((document.scrollingElement || document.documentElement).scrollTop);
+        VOIDPlus_SmoothScroller.scrollTo((document.scrollingElement || document.documentElement).scrollTop);
     }
 };
 
-VOID_Ui = {
+VOIDPlus_Ui = {
     checkGoTop: function () {
         if ($(document).scrollTop() > window.innerHeight) {
             $('#go-top').addClass('show');
@@ -254,7 +254,7 @@ VOID_Ui = {
     },
 
     checkHeader: function () {
-        if (VOIDConfig.headerMode == 2) return;
+        if (VOIDPlusConfig.headerMode == 2) return;
         var tr = $('.lazy-wrap').height();
         if ($(document).scrollTop() > tr) {
             $('body>header').addClass('pull-up');
@@ -264,11 +264,11 @@ VOID_Ui = {
     },
 
     checkScrollTop: function () {
-        if (VOID_Util.getCookie('void_pos') != null && parseFloat(VOID_Util.getCookie('void_pos')) != -1) {
-            VOID_SmoothScroller.scrollTo(parseFloat(VOID_Util.getCookie('void_pos')), -60);
-            VOID_Util.setCookie('void_pos', -1);
+        if (VOIDPlus_Util.getCookie('voidplus_pos') != null && parseFloat(VOIDPlus_Util.getCookie('voidplus_pos')) != -1) {
+            VOIDPlus_SmoothScroller.scrollTo(parseFloat(VOIDPlus_Util.getCookie('voidplus_pos')), -60);
+            VOIDPlus_Util.setCookie('voidplus_pos', -1);
         } else {
-            VOID_SmoothScroller.stop();
+            VOIDPlus_SmoothScroller.stop();
         }
     },
 
@@ -283,10 +283,10 @@ VOID_Ui = {
         TOC.close();
         if ($(item).hasClass('pushed')) {
             $('#nav-mobile').fadeIn(200);
-            VOID_Ui.openModal();
+            VOIDPlus_Ui.openModal();
         }
         else {
-            VOID_Ui.closeModal();
+            VOIDPlus_Ui.closeModal();
             $('#nav-mobile').fadeOut(200);
         }
     },
@@ -314,12 +314,12 @@ VOID_Ui = {
             if ($('#stylesheet_noto').length < 1)
                 $('body').append('<link id="stylesheet_noto" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:400,700&amp;subset=chinese-simplified" rel="stylesheet">');
             $('body').addClass('serif');
-            VOID_Util.setCookie('serif', '1', 2592000); // 一个月
+            VOIDPlus_Util.setCookie('serif', '1', 2592000); // 一个月
         } else {
             if ($('#stylesheet_droid').length < 1)
                 $('body').append('<link id="stylesheet_droid" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700" rel="stylesheet">');
             $('body').removeClass('serif');
-            VOID_Util.setCookie('serif', '0', 2592000);
+            VOIDPlus_Util.setCookie('serif', '0', 2592000);
         }
     },
 
@@ -328,19 +328,19 @@ VOID_Ui = {
 
         if (up) {
             if (current >= 5) {
-                VOID.alert('已经是最大了！');
+                VOIDPlus.alert('已经是最大了！');
                 return;
             }
             $('body').attr('fontsize', String(current + 1));
         } else {
             if (current <= 1) {
-                VOID.alert('已经是最小了！');
+                VOIDPlus.alert('已经是最小了！');
                 return;
             }
             $('body').attr('fontsize', String(current - 1));
         }
 
-        VOID_Util.setCookie('textsize', $('body').attr('fontsize'), 2592000);
+        VOIDPlus_Util.setCookie('textsize', $('body').attr('fontsize'), 2592000);
     },
 
     toggleLoginForm: function () {
@@ -351,13 +351,13 @@ VOID_Ui = {
             $.ajax({
                 type: 'POST',
                 url: window.location.href,
-                data: {void_action: 'getLoginAction'},
+                data: {voidplus_action: 'getLoginAction'},
                 success: function (data) {
                     $('form#loggin-form').attr('action', data);
                     $('#loggin-form').removeClass('need-refresh');
                 },
                 error: function () {
-                    VOID.alert('请求登陆参数错误。请在刷新后尝试登陆。');
+                    VOIDPlus.alert('请求登陆参数错误。请在刷新后尝试登陆。');
                     setTimeout(function () {
                         location.reload();
                     }, 1000);
@@ -367,12 +367,12 @@ VOID_Ui = {
     },
 
     lazyload: function () {
-        VOID_Lazyload.init();
-        VOID_BrowserLoadingLazy.init();
+        VOIDPlus_Lazyload.init();
+        VOIDPlus_BrowserLoadingLazy.init();
     },
 
     headroom: function () {
-        if (VOIDConfig.headerMode == 0) {
+        if (VOIDPlusConfig.headerMode == 0) {
             var header = document.querySelector('body>header');
             var headroom = new Headroom(header, { offset: 60 });
             headroom.init();
@@ -395,22 +395,22 @@ VOID_Ui = {
     },
 
     rememberPos: function () {
-        VOID_Util.setCookie('void_pos', String($(document).scrollTop()));
+        VOIDPlus_Util.setCookie('voidplus_pos', String($(document).scrollTop()));
     },
 
     scrollTop: 0,
 
     // 开启模态框
     openModal: function () {
-        VOID_Ui.scrollTop = document.scrollingElement.scrollTop;
+        VOIDPlus_Ui.scrollTop = document.scrollingElement.scrollTop;
         document.body.classList.add('modal-open');
-        document.body.style.top = -VOID_Ui.scrollTop + 'px';
+        document.body.style.top = -VOIDPlus_Ui.scrollTop + 'px';
     },
 
     // 关闭模态框
     closeModal: function () {
         document.body.classList.remove('modal-open');
-        document.scrollingElement.scrollTop = VOID_Ui.scrollTop;
+        document.scrollingElement.scrollTop = VOIDPlus_Ui.scrollTop;
     },
 
     reset: function () {
@@ -419,7 +419,7 @@ VOID_Ui = {
         $('header').removeClass('opened');
         $('#setting-panel').removeClass('show');
         if ($('body').hasClass('modal-open')) {
-            VOID_Ui.closeModal();
+            VOIDPlus_Ui.closeModal();
         }
         $('#nav-mobile').fadeOut(200);
         TOC.close();
@@ -438,9 +438,9 @@ VOID_Ui = {
             });
         },
         init: function () {
-            if (VOID_Ui.MasonryCtrler.check() && VOIDConfig.indexStyle == 0) {
+            if (VOIDPlus_Ui.MasonryCtrler.check() && VOIDPlusConfig.indexStyle == 0) {
                 $('.masonry-item').addClass('masonry-ready');
-                VOID_Ui.MasonryCtrler.masonry();
+                VOIDPlus_Ui.MasonryCtrler.masonry();
             }
             $('.masonry-item').addClass('done');
         },
@@ -450,8 +450,8 @@ VOID_Ui = {
         watch: function (id) {
             var el = document.getElementById(id);
             new ResizeSensor(el, function () {
-                if (VOID_Ui.MasonryCtrler.check() && $('#masonry').hasClass('masonry')) {
-                    VOID_Ui.MasonryCtrler.masonry();
+                if (VOIDPlus_Ui.MasonryCtrler.check() && $('#masonry').hasClass('masonry')) {
+                    VOIDPlus_Ui.MasonryCtrler.masonry();
                 }
             });
         }
@@ -460,32 +460,32 @@ VOID_Ui = {
     DarkModeSwitcher: {
         checkColorScheme: function () {
             // 非自动模式
-            if (VOIDConfig.colorScheme != 0) {
+            if (VOIDPlusConfig.colorScheme != 0) {
                 return;
             }
     
-            if (VOIDConfig.followSystemColorScheme && VOID_Util.getPrefersDarkModeState()) { // 自动模式跟随系统
+            if (VOIDPlusConfig.followSystemColorScheme && VOIDPlus_Util.getPrefersDarkModeState()) { // 自动模式跟随系统
                 document.body.classList.add('theme-dark');
-                var night = VOID_Util.getCookie('theme_dark');
+                var night = VOIDPlus_Util.getCookie('theme_dark');
                 if (night != '1') {
-                    VOID.alert('已为您开启深色模式。');
+                    VOIDPlus.alert('已为您开启深色模式。');
                 }
-                VOID_Util.setCookie('theme_dark', '1', 7200);
+                VOIDPlus_Util.setCookie('theme_dark', '1', 7200);
             } else { // 自动模式，定时            
                 // 若不存在 cookie，根据时间判断，并设置 cookie
-                if (VOID_Util.getCookie('theme_dark') == null) {
+                if (VOIDPlus_Util.getCookie('theme_dark') == null) {
                     // 全部转换至当天
                     sunset = new Date(new Date().setHours(
-                        Math.floor(VOIDConfig.darkModeTime.start),
-                        60 * (VOIDConfig.darkModeTime.start - Math.floor(VOIDConfig.darkModeTime.start)), 0));
+                        Math.floor(VOIDPlusConfig.darkModeTime.start),
+                        60 * (VOIDPlusConfig.darkModeTime.start - Math.floor(VOIDPlusConfig.darkModeTime.start)), 0));
                     sunrise = new Date(new Date().setHours(
-                        Math.floor(VOIDConfig.darkModeTime.end),
-                        60 * (VOIDConfig.darkModeTime.end - Math.floor(VOIDConfig.darkModeTime.end)), 0));
+                        Math.floor(VOIDPlusConfig.darkModeTime.end),
+                        60 * (VOIDPlusConfig.darkModeTime.end - Math.floor(VOIDPlusConfig.darkModeTime.end)), 0));
         
                     var current = new Date();
                     // 格式化为小时
-                    var sunset_s = VOIDConfig.darkModeTime.start;
-                    var sunrise_s = VOIDConfig.darkModeTime.end;
+                    var sunset_s = VOIDPlusConfig.darkModeTime.start;
+                    var sunrise_s = VOIDPlusConfig.darkModeTime.end;
                     var current_s = current.getHours() + current.getMinutes() / 60;
 
                     if (current_s > sunset_s || current_s < sunrise_s) {
@@ -495,14 +495,14 @@ VOID_Ui = {
                         // 现在距日出还有 (s)
                         var toSunrise = (sunrise.getTime() - current.getTime()) / 1000;
                         // 设置 cookie
-                        VOID_Util.setCookie('theme_dark', '1', parseInt(toSunrise));
-                        VOID.alert('日落了，夜间模式已开启。');
+                        VOIDPlus_Util.setCookie('theme_dark', '1', parseInt(toSunrise));
+                        VOIDPlus.alert('日落了，夜间模式已开启。');
                     } else {
                         document.body.classList.remove('theme-dark');
                     }
                 } else {
                     // 若存在 cookie，根据 cookie 判断
-                    night = VOID_Util.getCookie('theme_dark');
+                    night = VOIDPlus_Util.getCookie('theme_dark');
                     if (night == '0') {
                         document.body.classList.remove('theme-dark');
                     } else if (night == '1') {
@@ -517,9 +517,9 @@ VOID_Ui = {
             setTimeout(function () {
                 $('body').toggleClass('theme-dark');
                 if ($('body').hasClass('theme-dark')) {
-                    VOID_Util.setCookie('theme_dark', '1', 0);
+                    VOIDPlus_Util.setCookie('theme_dark', '1', 0);
                 } else {
-                    VOID_Util.setCookie('theme_dark', '0', 0);
+                    VOIDPlus_Util.setCookie('theme_dark', '0', 0);
                 }
                 setTimeout(function () {
                     $('#toggle-night').removeClass('switching');
@@ -557,18 +557,18 @@ VOID_Ui = {
 (function () {
     if ('ontouchstart' in document) {
         $(document).on('touchstart', function (e) {
-            VOID_Ui.Swiper.start(e);
+            VOIDPlus_Ui.Swiper.start(e);
         });
         // $(document).on('touchmove', function () {
-        //     VOID_Ui.checkHeader();
+        //     VOIDPlus_Ui.checkHeader();
         // });
         $(document).on('touchend', function (e) {
-            VOID_Ui.Swiper.end(e);
+            VOIDPlus_Ui.Swiper.end(e);
         });
     }
     $(document).on('scroll', function () {
-        VOID_Ui.checkGoTop();
-        VOID_Ui.checkHeader();
+        VOIDPlus_Ui.checkGoTop();
+        VOIDPlus_Ui.checkHeader();
         if (!('ontouchstart' in document)) {
             $('body').removeClass('setting-panel-show');
             setTimeout(function () {

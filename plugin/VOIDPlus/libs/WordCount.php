@@ -6,7 +6,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
  * @author AlanDecode | 熊猫小A
  */
 
-class VOID_WordCount
+class VOIDPlus_WordCount
 {
     /**
      * 更新所有的字数统计

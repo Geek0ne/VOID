@@ -72,11 +72,11 @@ jobs:
           grep -q 'og:image:alt'     includes/head.php || { echo "::error::og:image:alt missing"; exit 1; }
           echo "SEO tags present"
 
-  # The repository tracks sources, not build output. assets/VOID.scss plus
+  # The repository tracks sources, not build output. assets/VOID-Plus.scss plus
   # assets/parts/ and assets/libs/ are versioned; the compiled bundle.css,
-  # VOID.css, bundle.js and bundle-header.js that the PHP templates load are
+  # VOID-Plus.css, bundle.js and bundle-header.js that the PHP templates load are
   # produced by `npm run build` and are gitignored on purpose — upstream ships
-  # them inside VOID-<version>.zip instead.
+  # them inside VOID-Plus-<version>.zip instead.
   #
   # This job therefore does not rebuild. It checks that a fresh clone carries
   # everything needed to build, which is what a deployer actually depends on.
@@ -93,7 +93,7 @@ jobs:
       - name: Sass sources present
         run: |
           set -e
-          for p in assets/VOID.scss assets/parts assets/libs assets/fonts; do
+          for p in assets/VOID-Plus.scss assets/parts assets/libs assets/fonts; do
             [ -e "$p" ] || { echo "::error::$p is missing — a fresh clone cannot build"; exit 1; }
           done
           echo "sass sources present"
@@ -122,7 +122,7 @@ jobs:
                  | sed "s/indexTheme('//;s/')//" | sort -u)
           for ref in $refs; do
             case "$ref" in
-              */bundle*.js|*/bundle*.css|*/VOID*.css) continue ;;
+              */bundle*.js|*/bundle*.css|*/VOID-Plus*.css) continue ;;
             esac
             if [ ! -f ".$ref" ]; then
               echo "::error::$ref referenced by a template but absent from the repo"

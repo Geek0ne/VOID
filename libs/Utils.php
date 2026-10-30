@@ -270,12 +270,12 @@ class Utils
     }
 
     /**
-     * 存在 VOID 插件且满足要求
+     * 存在 VOID-Plus 插件且满足要求
      */
-    public static function hasVOIDPlugin($req)
+    public static function hasVOIDPlusPlugin($req)
     {
-        if(self::isPluginAvailable('VOID')) {
-            $version_have = VOID_Plugin::$VERSION;
+        if(self::isPluginAvailable('VOIDPlus')) {
+            $version_have = VOIDPlus_Plugin::$VERSION;
             if($version_have >= $req) return true;
         }
 
@@ -287,7 +287,7 @@ class Utils
      * 
      * @return array
      */
-    public static function getVOIDSettings()
+    public static function getVOIDPlusSettings()
     {
         $options = Helper::options();
 
@@ -369,7 +369,7 @@ class Utils
         }
 
         $output = array_merge($themeSetting, $advanceSetting);
-        $output['VOIDPlugin'] = self::hasVOIDPlugin($GLOBALS['VOIDPluginREQ']);
+        $output['VOIDPlusPlugin'] = self::hasVOIDPlusPlugin($GLOBALS['VOIDPlusPluginREQ']);
 
         return $output;
     }

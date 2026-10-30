@@ -9,7 +9,7 @@
  * 
 */ 
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
-$setting = $GLOBALS['VOIDSetting'];
+$setting = $GLOBALS['VOIDPlusSetting'];
  
 if(!Utils::isPjax()){
     $this->need('includes/head.php');
@@ -44,7 +44,7 @@ if(!Utils::isPjax()){
                     <a no-pjax target="_self" data-num="<?php echo $post_num; ?>" 
                         data-year="<?php echo $year; ?>" 
                         class="toggle-archive" href="javascript:void(0);" 
-                        onclick="VOID_Ui.toggleArchive(this); return false;"><?php if($index > 0) echo '+'; else echo '-'; ?>
+                        onclick="VOIDPlus_Ui.toggleArchive(this); return false;"><?php if($index > 0) echo '+'; else echo '-'; ?>
                     </a>
                 </h2>
                 <section id="year-<?php echo $year; ?>" 
@@ -53,8 +53,8 @@ if(!Utils::isPjax()){
                     <ul>
                     <?php foreach($posts as $created => $post): ?>
                         <li>
-                            <a class="archive-title<?php if($setting['VOIDPlugin']) echo ' show-word-count'; ?>" 
-                                data-words="<?php if($setting['VOIDPlugin']) echo $post['words']; ?>" 
+                            <a class="archive-title<?php if($setting['VOIDPlusPlugin']) echo ' show-word-count'; ?>" 
+                                data-words="<?php if($setting['VOIDPlusPlugin']) echo $post['words']; ?>" 
                                 href="<?php echo $post['permalink']; ?>">
                                 <span class="date"><?php echo date('m-d', $created); ?></span><?php echo $post['title']; ?>
                             </a>

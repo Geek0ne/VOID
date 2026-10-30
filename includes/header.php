@@ -8,7 +8,7 @@
  * @version     2019-01-15 0.1
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
-$setting = $GLOBALS['VOIDSetting'];
+$setting = $GLOBALS['VOIDPlusSetting'];
 $banner = $setting['defaultBanner'];
 
 if($this->is('post') || $this->is('page')) {
@@ -51,7 +51,7 @@ if($this->is('post') || $this->is('page')) {
     <header class="header-mode-<?php echo $setting['headerMode']; ?> <?php if(empty($banner)) echo 'force-dark no-banner'; ?>">
         <div class="container wider">
             <nav>
-                <a role=button aria-label="展开导航" class="toggle" target="_self" href="javascript:void(0);" onclick="VOID_Ui.toggleNav(this);">
+                <a role=button aria-label="展开导航" class="toggle" target="_self" href="javascript:void(0);" onclick="VOIDPlus_Ui.toggleNav(this);">
                     <span></span>
                 </a>
                 <a class="brand" href="<?php Utils::index(''); ?>"><?php if($setting['name']) echo $setting['name']; else echo $this->options->title; ?></a>
@@ -76,21 +76,21 @@ if($this->is('post') || $this->is('page')) {
                 <?php if(!Utils::isPluginAvailable('ExSearch')): ?>
                     <span class="hidden-xs search-form-desktop">
                         <label for="search">搜索</label>
-                        <input onkeydown="VOID.enterSearch(this);" type="text" name="search-content" id="search" required />
+                        <input onkeydown="VOIDPlus.enterSearch(this);" type="text" name="search-content" id="search" required />
                     </span>
                 <?php endif; ?>
                 <a <?php if(Utils::isPluginAvailable('ExSearch')) echo 'class="search-form-input" style="display:flex"'; ?> 
                     role=button aria-label="展开搜索" id="toggle-mobile-search" target="_self" 
                     href="javascript:void(0);" 
-                    onclick="<?php if(!Utils::isPluginAvailable('ExSearch')) echo 'VOID_Ui.toggleSearch(this);'; ?>">
+                    onclick="<?php if(!Utils::isPluginAvailable('ExSearch')) echo 'VOIDPlus_Ui.toggleSearch(this);'; ?>">
                     <i class="voidicon-search"></i>
                 </a>
             </nav>
         </div>
         <div class="mobile-search-form">
             <label for="search_new">搜索</label>
-            <input onkeydown="VOID.enterSearch(this);" type="text" name="search-content" id="search_new" required placeholder="输入内容然后 Go!" />
-            <button onclick="VOID.startSearch('#search_new');">Go!</button>
+            <input onkeydown="VOIDPlus.enterSearch(this);" type="text" name="search-content" id="search_new" required placeholder="输入内容然后 Go!" />
+            <button onclick="VOIDPlus.startSearch('#search_new');">Go!</button>
         </div>
     </header>
     <div id="nav-mobile">

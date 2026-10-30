@@ -8,7 +8,7 @@
  * @version     2019-01-15 0.1
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
-$setting = $GLOBALS['VOIDSetting'];
+$setting = $GLOBALS['VOIDPlusSetting'];
 ?>
 
 <main id="pjax-container">
@@ -52,7 +52,7 @@ $setting = $GLOBALS['VOIDSetting'];
                             <div class="content-wrap">
                                 <div class="post-meta-index">
                                     <time datetime="<?php echo date('c', $this->created); ?>"><?php echo date('M d, Y', $this->created); ?></time>
-                                    <?php if($setting['VOIDPlugin']): ?>
+                                    <?php if($setting['VOIDPlusPlugin']): ?>
                                         <span class="word-count">+ <?php echo $this->wordCount; ?> 字</span>
                                     <?php endif; ?>
                                 </div>
@@ -67,7 +67,7 @@ $setting = $GLOBALS['VOIDSetting'];
                         </article>
                     </a>
                 </li>
-                <script>VOID_Ui.MasonryCtrler.watch("p-<?php $this->cid(); ?>");</script>
+                <script>VOIDPlus_Ui.MasonryCtrler.watch("p-<?php $this->cid(); ?>");</script>
             <?php endwhile; ?>
             </ul>
         </section>

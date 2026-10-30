@@ -2,13 +2,13 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable no-undef */
 /* eslint-disable no-console */
-// VOID
+// VOID-Plus
 // Author: Geek0ne
 // Link: https://github.com/Geek0ne/VOID-Plus
 
-console.log(' %c Theme VOID %c https://github.com/Geek0ne/VOID-Plus ', 'color: #fadfa3; background: #23b7e5; padding:5px;', 'background: #1c2b36; padding:5px;');
+console.log(' %c Theme VOID-Plus %c https://github.com/Geek0ne/VOID-Plus ', 'color: #fadfa3; background: #23b7e5; padding:5px;', 'background: #1c2b36; padding:5px;');
 
-var VOID_Content = {
+var VOIDPlus_Content = {
     countWords: function () {
         if ($('#totalWordCount').length) {
             var total = 0;
@@ -45,7 +45,7 @@ var VOID_Content = {
             tocbot.init(toc_option);
             $.each($('.toc-link'), function(i, item){
                 $(item).click(function(){
-                    VOID_SmoothScroller.scrollTo($(this).attr('href'), -60);
+                    VOIDPlus_SmoothScroller.scrollTo($(this).attr('href'), -60);
                     if(window.innerWidth < 1200) {
                         TOC.close();
                     }
@@ -78,8 +78,8 @@ var VOID_Content = {
     // 处理友链列表
     parseBoardThumbs: function () {
         $.each($('.board-thumb'), function(i, item) {
-            if (VOIDConfig.lazyload) {
-                if (VOIDConfig.browserLevelLoadingLazy) {
+            if (VOIDPlusConfig.lazyload) {
+                if (VOIDPlusConfig.browserLevelLoadingLazy) {
                     $(item).html('<img class="lazyload browserlevel-lazy" src="' +$(item).attr('data-thumb')+ '" loading="lazy">');
                 } else {
                     $(item).html('<img class="lazyload" data-src="' +$(item).attr('data-thumb')+ '">');
@@ -101,7 +101,7 @@ var VOID_Content = {
             }
         });
 
-        if (VOIDConfig.PJAX) {
+        if (VOIDPlusConfig.PJAX) {
             $.each($('a:not(a[target="_blank"], a[no-pjax])'), function (i, item) {
                 if (item.hostname == domain) {
                     $(item).addClass('pjax');
@@ -143,7 +143,7 @@ var VOID_Content = {
         });
         
         Prism.highlightAll();
-        VOID_Content.codeToolbar();
+        VOIDPlus_Content.codeToolbar();
     },
 
     codeToolbar: function () {
@@ -179,11 +179,11 @@ var VOID_Content = {
                 };
                 if (navigator.clipboard && navigator.clipboard.writeText) {
                     navigator.clipboard.writeText(text).then(done, function () {
-                        VOID_Content.copyFallback(text);
+                        VOIDPlus_Content.copyFallback(text);
                         done();
                     });
                 } else {
-                    VOID_Content.copyFallback(text);
+                    VOIDPlus_Content.copyFallback(text);
                     done();
                 }
             });
@@ -215,7 +215,7 @@ var VOID_Content = {
     },
 
     math: function () {
-        if (VOIDConfig.enableMath && typeof MathJax !== 'undefined') {
+        if (VOIDPlusConfig.enableMath && typeof MathJax !== 'undefined') {
             MathJax.Hub.Config({
                 tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
             });
@@ -228,40 +228,40 @@ var VOID_Content = {
     }
 };
 
-var VOID = {
+var VOIDPlus = {
     // 初始化单页应用
     init: function () {
         /* 初始化 UI */
-        VOID_Ui.checkHeader();
-        VOID_Ui.MasonryCtrler.init();
-        VOID_Ui.DarkModeSwitcher.checkColorScheme();
-        VOID_Ui.checkScrollTop();
-        VOID_Content.parseBoardThumbs();
-        VOID_Ui.lazyload();
-        VOID_Ui.headroom();
+        VOIDPlus_Ui.checkHeader();
+        VOIDPlus_Ui.MasonryCtrler.init();
+        VOIDPlus_Ui.DarkModeSwitcher.checkColorScheme();
+        VOIDPlus_Ui.checkScrollTop();
+        VOIDPlus_Content.parseBoardThumbs();
+        VOIDPlus_Ui.lazyload();
+        VOIDPlus_Ui.headroom();
 
-        VOID_Content.countWords();
-        VOID_Content.parseTOC();
-        VOID_Content.parsePhotos();
-        VOID_Content.highlight();
-        VOID_Content.parseUrl();
-        VOID_Content.pangu();
-        VOID_Content.bigfoot();
-        VOID_Content.math();
-        VOID_Content.hyphenate();
+        VOIDPlus_Content.countWords();
+        VOIDPlus_Content.parseTOC();
+        VOIDPlus_Content.parsePhotos();
+        VOIDPlus_Content.highlight();
+        VOIDPlus_Content.parseUrl();
+        VOIDPlus_Content.pangu();
+        VOIDPlus_Content.bigfoot();
+        VOIDPlus_Content.math();
+        VOIDPlus_Content.hyphenate();
         
-        VOID_Vote.reload();
+        VOIDPlus_Vote.reload();
         AjaxComment.init();
 
         $('body').on('click', function (e) {
-            if (!VOID_Util.clickIn(e, '.mobile-search-form') && !VOID_Util.clickIn(e, '#toggle-mobile-search')) {
+            if (!VOIDPlus_Util.clickIn(e, '.mobile-search-form') && !VOIDPlus_Util.clickIn(e, '#toggle-mobile-search')) {
                 if ($('.mobile-search-form').hasClass('opened')) {
                     $('.mobile-search-form').removeClass('opened');
                     return false;
                 }
             }
-            if (!VOID_Util.clickIn(e, '#toggle-setting-pc') && !VOID_Util.clickIn(e, '#toggle-setting')) {
-                if ($('body').hasClass('setting-panel-show') && !VOID_Util.clickIn(e, '#setting-panel')) {
+            if (!VOIDPlus_Util.clickIn(e, '#toggle-setting-pc') && !VOIDPlus_Util.clickIn(e, '#toggle-setting')) {
+                if ($('body').hasClass('setting-panel-show') && !VOIDPlus_Util.clickIn(e, '#setting-panel')) {
                     $('body').removeClass('setting-panel-show');
                     setTimeout(function () {
                         $('#setting-panel').hide();
@@ -275,34 +275,34 @@ var VOID = {
     // PJAX 开始前
     beforePjax: function () {
         NProgress.start();
-        VOID_Ui.reset();
+        VOIDPlus_Ui.reset();
     },
 
     // PJAX 结束后
     afterPjax: function () {
         NProgress.done();
 
-        VOID_Content.parseBoardThumbs();
+        VOIDPlus_Content.parseBoardThumbs();
 
         if ($('#loggin-form').length) {
             $('#loggin-form').addClass('need-refresh');
         }
 
-        VOID_Ui.MasonryCtrler.init();
-        VOID_Ui.lazyload();
+        VOIDPlus_Ui.MasonryCtrler.init();
+        VOIDPlus_Ui.lazyload();
         
-        VOID_Ui.checkScrollTop();
-        VOID_Content.countWords();
-        VOID_Content.parseTOC();
-        VOID_Content.parsePhotos();
-        VOID_Content.parseUrl();
-        VOID_Content.highlight();
-        VOID_Content.math();
-        VOID_Content.hyphenate();
-        VOID_Content.pangu();
-        VOID_Content.bigfoot();
+        VOIDPlus_Ui.checkScrollTop();
+        VOIDPlus_Content.countWords();
+        VOIDPlus_Content.parseTOC();
+        VOIDPlus_Content.parsePhotos();
+        VOIDPlus_Content.parseUrl();
+        VOIDPlus_Content.highlight();
+        VOIDPlus_Content.math();
+        VOIDPlus_Content.hyphenate();
+        VOIDPlus_Content.pangu();
+        VOIDPlus_Content.bigfoot();
 
-        VOID_Vote.reload();
+        VOIDPlus_Vote.reload();
 
         // 重载表情
         if ($('.OwO').length > 0) {
@@ -310,7 +310,7 @@ var VOID = {
                 logo: 'OωO',
                 container: document.getElementsByClassName('OwO')[0],
                 target: document.getElementsByClassName('input-area')[0],
-                api: '/usr/themes/VOID/assets/libs/owo/OwO_03.json',
+                api: '/usr/themes/VOID-Plus/assets/libs/owo/OwO_03.json',
                 position: 'down',
                 width: '400px',
                 maxHeight: '250px'
@@ -356,8 +356,8 @@ var VOID = {
             $(item).attr('placeholder', '你还没有输入任何信息');
             return;
         }
-        var t = VOIDConfig.searchBase + c;
-        if (VOIDConfig.PJAX) {
+        var t = VOIDPlusConfig.searchBase + c;
+        if (VOIDPlusConfig.PJAX) {
             $.pjax({
                 url: t,
                 container: '#pjax-container',
@@ -372,25 +372,25 @@ var VOID = {
     enterSearch: function (item) {
         var event = window.event || arguments.callee.caller.arguments[0];
         if (event.keyCode == 13) {
-            VOID.startSearch(item);
+            VOIDPlus.startSearch(item);
         }
     }
 };
 
-var VOID_Vote = {
+var VOIDPlus_Vote = {
     vote: function (item) {
         var type = $(item).attr('data-type');
         var id = $(item).attr('data-item-id');
         var table = $(item).attr('data-table');
 
-        var cookieName = 'void_vote_' + table + '_' + type;
-        var voted = VOID_Util.getCookie(cookieName);
+        var cookieName = 'voidplus_vote_' + table + '_' + type;
+        var voted = VOIDPlus_Util.getCookie(cookieName);
         if (voted == null) voted = ',';
 
         // 首先检查本地 cookie
         if (voted.indexOf(',' + id + ',') != -1) {
             $(item).addClass('done');
-            VOID.alert('您已经投过票了~');
+            VOIDPlus.alert('您已经投过票了~');
             return;
         }
 
@@ -399,14 +399,14 @@ var VOID_Vote = {
             var type_2 = '';
             if (type == 'up') type_2 = 'down';
             else type_2 = 'up';
-            if (VOID_Vote.checkVoted(type_2, id, table)) {
-                VOID.alert('暂不支持更改投票哦～');
+            if (VOIDPlus_Vote.checkVoted(type_2, id, table)) {
+                VOIDPlus.alert('暂不支持更改投票哦～');
                 return;
             }
         }
 
         $.ajax({
-            url: VOIDConfig.votePath + table,
+            url: VOIDPlusConfig.votePath + table,
             type: 'POST',
             data: JSON.stringify({
                 'id': parseInt(id),
@@ -418,7 +418,7 @@ var VOID_Vote = {
                 if (data.code >= 200 && data.code < 400) {
                     $(item).addClass('done');
                     voted += id + ',';
-                    VOID_Util.setCookie(cookieName, voted, 3600 * 24 * 90);
+                    VOIDPlus_Util.setCookie(cookieName, voted, 3600 * 24 * 90);
                 }
                 switch (data.code) {
                 case 200:
@@ -426,24 +426,24 @@ var VOID_Vote = {
                     $(item).find('.value').text(prev + 1);
                     break;
                 case 302:
-                    VOID.alert('您好像已经投过票了呢～');
+                    VOIDPlus.alert('您好像已经投过票了呢～');
                     break;
                 case 403:
-                    VOID.alert('暂不支持更改投票哦～');
+                    VOIDPlus.alert('暂不支持更改投票哦～');
                     break;
                 default:
                     break;
                 }
             },
             error: function () {
-                VOID.alert('投票失败 o(╥﹏╥)o，请稍后重试');
+                VOIDPlus.alert('投票失败 o(╥﹏╥)o，请稍后重试');
             }
         });
     },
 
     checkVoted: function (type, id, table) {
-        var cookieName = 'void_vote_' + table + '_' + type;
-        var voted = VOID_Util.getCookie(cookieName);
+        var cookieName = 'voidplus_vote_' + table + '_' + type;
+        var voted = VOIDPlus_Util.getCookie(cookieName);
         if (voted == null) voted = ',';
         return voted.indexOf(',' + id + ',') != -1;
     },
@@ -455,7 +455,7 @@ var VOID_Vote = {
             var id = $(item).attr('data-item-id');
             var table = $(item).attr('data-table');
 
-            if (VOID_Vote.checkVoted(type, id, table)) {
+            if (VOIDPlus_Vote.checkVoted(type, id, table)) {
                 $(item).addClass('done');
             }
         });
@@ -540,12 +540,12 @@ var AjaxComment = {
         $(AjaxComment.textarea).val('');
         $(AjaxComment.submitBtn).attr('disabled', false);
         if ($('#comment-' + AjaxComment.newID).length > 0) {
-            VOID_SmoothScroller.scrollTo($('#comment-' + AjaxComment.newID).offset().top, -60);
+            VOIDPlus_SmoothScroller.scrollTo($('#comment-' + AjaxComment.newID).offset().top, -60);
             $('#comment-' + AjaxComment.newID).fadeTo(500, 1);
         }
         $('.comment-num .num').html(parseInt($('.comment-num .num').html()) + 1);
         AjaxComment.bindClick();
-        VOID_Content.highlight();
+        VOIDPlus_Content.highlight();
     },
 
     init: function () {
@@ -556,7 +556,7 @@ var AjaxComment = {
             /* 检查 */
             if ($(AjaxComment.commentForm).find('#author')[0]) {
                 if ($(AjaxComment.commentForm).find('#author').val() == '') {
-                    VOID.alert(AjaxComment.noName);
+                    VOIDPlus.alert(AjaxComment.noName);
                     AjaxComment.err();
                     return false;
                 }
@@ -564,7 +564,7 @@ var AjaxComment = {
                 if (typeof $(AjaxComment.commentForm).find('#mail').attr('required') != 'undefined') {
                     // 需要邮箱
                     if ($(AjaxComment.commentForm).find('#mail').val() == '') {
-                        VOID.alert(AjaxComment.noMail);
+                        VOIDPlus.alert(AjaxComment.noMail);
                         AjaxComment.err();
                         return false;
                     }
@@ -573,7 +573,7 @@ var AjaxComment = {
                 if ($(AjaxComment.commentForm).find('#mail').val() != '') {
                     var filter = /^[^@\s<&>]+@([a-z0-9]+\.)+[a-z]{2,4}$/i;
                     if (!filter.test($(AjaxComment.commentForm).find('#mail').val())) {
-                        VOID.alert(AjaxComment.invalidMail);
+                        VOIDPlus.alert(AjaxComment.invalidMail);
                         AjaxComment.err();
                         return false;
                     }
@@ -581,7 +581,7 @@ var AjaxComment = {
 
                 if ($(AjaxComment.commentForm).find('#url').val() == '' 
                     && typeof $(AjaxComment.commentForm).find('#url').attr('required') != 'undefined') {
-                    VOID.alert(AjaxComment.noUrl);
+                    VOIDPlus.alert(AjaxComment.noUrl);
                     AjaxComment.err();
                     return false;
                 }
@@ -589,7 +589,7 @@ var AjaxComment = {
 
             var textValue = $(AjaxComment.commentForm).find(AjaxComment.textarea).val().replace(/(^\s*)|(\s*$)/g, '');//检查空格信息
             if (textValue == null || textValue == '') {
-                VOID.alert(AjaxComment.noContent);
+                VOIDPlus.alert(AjaxComment.noContent);
                 AjaxComment.err();
                 return false;
             }
@@ -599,7 +599,7 @@ var AjaxComment = {
                 type: $(AjaxComment.commentForm).attr('method'),
                 data: $(AjaxComment.commentForm).serializeArray(),
                 error: function () {
-                    VOID.alert('提交失败！请重试。');
+                    VOIDPlus.alert('提交失败！请重试。');
                     $(AjaxComment.submitBtn).html('提交评论');
                     AjaxComment.err();
                     return false;
@@ -608,7 +608,7 @@ var AjaxComment = {
                     try {
                         if (!$(AjaxComment.commentList, data).length) {
                             var msg = '提交失败！请重试。' + $($(data)[7]).text();
-                            VOID.alert(msg);
+                            VOIDPlus.alert(msg);
                             $(AjaxComment.submitBtn).html('提交评论');
                             AjaxComment.err();
                             return false;
@@ -619,7 +619,7 @@ var AjaxComment = {
 
                             if ($('.pager .prev').length && AjaxComment.parentID == '') {
                                 // 在分页对文章发表评论，无法取得最新评论内容
-                                VOID.alert('评论成功！请回到评论第一页查看。');
+                                VOIDPlus.alert('评论成功！请回到评论第一页查看。');
                                 AjaxComment.newID = '';
                                 AjaxComment.parentID = '';
                                 AjaxComment.finish();
@@ -638,7 +638,7 @@ var AjaxComment = {
                             if (AjaxComment.parentID == '') {
                                 // 无父 id，直接对文章评论，插入到第一个 comment-list 头部
                                 $('#comments>.comment-list').prepend(newCommentData);
-                                VOID.alert('评论成功！');
+                                VOIDPlus.alert('评论成功！');
                                 AjaxComment.finish();
                                 AjaxComment.newID = '';
                                 return false;
@@ -658,7 +658,7 @@ var AjaxComment = {
                                     // 父评论是子评论，与父评论平级，并放在后面
                                     $('#' + AjaxComment.parentID).after(newCommentData);
                                 }
-                                VOID.alert('评论成功！');
+                                VOIDPlus.alert('评论成功！');
                                 AjaxComment.finish();
                                 AjaxComment.parentID = '';
                                 AjaxComment.newID = '';
@@ -677,24 +677,24 @@ var AjaxComment = {
 
 (function () {
     $(document).ready(function () {
-        VOID.init();
-        if (VOIDConfig.PJAX) {
+        VOIDPlus.init();
+        if (VOIDPlusConfig.PJAX) {
             $(document).on('pjax:send', function () {
-                VOID.beforePjax();
+                VOIDPlus.beforePjax();
             });
     
             $(document).on('pjax:complete', function () {
-                VOID.afterPjax();
+                VOIDPlus.afterPjax();
             });
     
             $(document).on('pjax:end', function () {	
-                VOID.endPjax();
+                VOIDPlus.endPjax();
             });
         }
     });
 
     window.setInterval(function () {
-        var times = new Date().getTime() - Date.parse(VOIDConfig.buildTime);
+        var times = new Date().getTime() - Date.parse(VOIDPlusConfig.buildTime);
         times = Math.floor(times / 1000); // convert total milliseconds into total seconds
         var days = Math.floor(times / (60 * 60 * 24)); //separate days
         times %= 60 * 60 * 24; //subtract entire days

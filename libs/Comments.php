@@ -18,7 +18,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
  * @copyright Copyright (c) 2008 Typecho team (http://www.typecho.org)
  * @license GNU General Public License 2.0
  */
-class VOID_Widget_Comments_Archive extends Widget_Abstract_Comments
+class VOIDPlus_Widget_Comments_Archive extends Widget_Abstract_Comments
 {
      /**
      * 当前页
@@ -103,7 +103,7 @@ class VOID_Widget_Comments_Archive extends Widget_Abstract_Comments
             return threadedComments($this, $singleCommentOptions);
         }
 
-        $setting = $GLOBALS['VOIDSetting'];
+        $setting = $GLOBALS['VOIDPlusSetting'];
         
         $avatarClass = '';
         $commentClass = '';
@@ -113,7 +113,7 @@ class VOID_Widget_Comments_Archive extends Widget_Abstract_Comments
             }
         }
 
-        if ($setting['VOIDPlugin']) {
+        if ($setting['VOIDPlusPlugin']) {
             $metaArr = $this->getLikesAndDislikes();
             if ($metaArr['dislikes'] >= $setting['commentFoldThreshold'][0]
             && ($metaArr['dislikes'] >= $metaArr['likes']*$setting['commentFoldThreshold'][1])) {
@@ -146,10 +146,10 @@ class VOID_Widget_Comments_Archive extends Widget_Abstract_Comments
                 <?php if ('waiting' == $this->status) { ?>
                 <em class="comment-awaiting-moderation"><?php $singleCommentOptions->commentStatus(); ?></em>
                 <?php } ?>
-                <?php if ($setting['VOIDPlugin']) { ?>
+                <?php if ($setting['VOIDPlusPlugin']) { ?>
                 <a style="margin: 0 5px" no-pjax target="_self" class="comment-vote vote-button" 
                     href="javascript:void(0)" 
-                    onclick="VOID_Vote.vote(this)"
+                    onclick="VOIDPlus_Vote.vote(this)"
                     data-item-id="<?php echo $this->coid;?>" 
                     data-type="up"
                     data-table="comment"
@@ -157,7 +157,7 @@ class VOID_Widget_Comments_Archive extends Widget_Abstract_Comments
                 </a>
                 <a no-pjax target="_self" class="comment-vote vote-button" 
                     href="javascript:void(0)" 
-                    onclick="VOID_Vote.vote(this)"
+                    onclick="VOIDPlus_Vote.vote(this)"
                     data-item-id="<?php echo $this->coid;?>" 
                     data-type="down"
                     data-table="comment"
@@ -167,10 +167,10 @@ class VOID_Widget_Comments_Archive extends Widget_Abstract_Comments
             </span>
         </div>
         <div class="comment-content yue">
-            <?php if ($setting['VOIDPlugin'] && $metaArr['dislikes'] >= $setting['commentFoldThreshold'][0]
+            <?php if ($setting['VOIDPlusPlugin'] && $metaArr['dislikes'] >= $setting['commentFoldThreshold'][0]
             && ($metaArr['dislikes'] >= $metaArr['likes']*$setting['commentFoldThreshold'][1])) { ?>
                 <span class="fold">[该评论已被自动折叠 | <a no-pjax target="_self" href="javascript:void(0)" 
-                onclick="VOID_Vote.toggleFoldComment(<?php echo $this->coid; ?>, this)">点击展开</a>]</span>
+                onclick="VOIDPlus_Vote.toggleFoldComment(<?php echo $this->coid; ?>, this)">点击展开</a>]</span>
             <?php }?>
             <div class="comment-content-inner"><?php echo Contents::parseBiaoQing($this->content); ?></div>
         </div>

@@ -7,7 +7,7 @@
  */
 
  .yue {
-    font: 400 18px/1.75 $void-font-default;
+    font: 400 18px/1.75 $voidplus-font-default;
     [fontsize="1"] & {
         font-size: 14px;
     }
@@ -24,7 +24,7 @@
     -webkit-font-smoothing: antialiased;
 
     .serif & {
-        font-family: $void-font-serif;
+        font-family: $voidplus-font-serif;
     }
     color: $textColor;
     .theme-dark & {
@@ -39,7 +39,7 @@
 .yue h4,
 .yue h5,
 .yue h6 {
-    font-family: $void-font-sans;
+    font-family: $voidplus-font-sans;
     color: $darkColor;
     .theme-dark & {
         color: $td-textColor-light;

@@ -18,17 +18,17 @@ jobs:
         run: |
           set -e
           # 严格从 tag 指向的已提交内容打包（未提交/未推送的改动不会进入发行包）
-          mkdir -p dist/extract "dist/pkg/1.主题/VOID" "dist/pkg/2.配套插件/VOID"
+          mkdir -p dist/extract "dist/pkg/1.主题/VOID-Plus" "dist/pkg/2.配套插件/VOIDPlus"
           git archive --format=tar HEAD | tar -x -C dist/extract
           cd dist/extract
           for item in $(ls -A | grep -vE '^(\.github|\.eslintrc\.json|\.gitattributes|\.gitignore|\.vscode|Makefile|RELEASE-NOTES.*\.md|gulpfile\.js|package-lock\.json|package\.json|plugin)$'); do
-            cp -r "$item" "../pkg/1.主题/VOID/"
+            cp -r "$item" "../pkg/1.主题/VOID-Plus/"
           done
-          cp -r plugin/VOID/. "../pkg/2.配套插件/VOID/"
+          cp -r plugin/VOIDPlus/. "../pkg/2.配套插件/VOIDPlus/"
           cd ../pkg
-          zip -qr ../VOID.zip "1.主题" "2.配套插件"
+          zip -qr ../VOID-Plus.zip "1.主题" "2.配套插件"
           cd ../..
-          echo "dist/VOID.zip 打包完成: $(du -h dist/VOID.zip | cut -f1)"
+          echo "dist/VOID-Plus.zip 打包完成: $(du -h dist/VOID-Plus.zip | cut -f1)"
 
       - name: Create Release and Upload Asset
         uses: actions/github-script@v7
@@ -36,7 +36,7 @@ jobs:
           script: |
             const fs = require('fs');
             const tag = process.env.GITHUB_REF_NAME;
-            const title = 'VOID ' + tag.replace(/^v/, '');
+            const title = 'VOID-Plus ' + tag.replace(/^v/, '');
             const notesFile = 'RELEASE-NOTES-' + tag + '.md';
             const notes = fs.existsSync(notesFile) ? fs.readFileSync(notesFile, 'utf8') : null;
             let release = null;
@@ -57,13 +57,13 @@ jobs:
               });
               release = created.data;
             }
-            const assetName = 'VOID.zip';
+            const assetName = 'VOID-Plus.zip';
             for (const asset of (release.assets || [])) {
               if (asset.name === assetName) {
                 await github.rest.repos.deleteReleaseAsset({ owner: context.repo.owner, repo: context.repo.repo, asset_id: asset.id });
               }
             }
-            const data = fs.readFileSync('dist/VOID.zip');
+            const data = fs.readFileSync('dist/VOID-Plus.zip');
             await github.rest.repos.uploadReleaseAsset({
               owner: context.repo.owner,
               repo: context.repo.repo,

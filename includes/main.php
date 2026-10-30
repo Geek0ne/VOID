@@ -8,7 +8,7 @@
  * @version     2019-01-15 0.1
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
-$setting = $GLOBALS['VOIDSetting'];
+$setting = $GLOBALS['VOIDPlusSetting'];
 ?>
 
 <main id="pjax-container">
@@ -52,11 +52,11 @@ $setting = $GLOBALS['VOIDSetting'];
                             <a data-fancybox="gallery-reward" role=button aria-label="赞赏" data-src="#reward" href="javascript:;" class="btn btn-normal btn-highlight">赏杯咖啡</a>
                             <div hidden id="reward"><img src="<?php echo $setting['reward']; ?>"></div>
                         <?php endif; ?>
-                        <?php if($setting['VOIDPlugin']):?>
+                        <?php if($setting['VOIDPlusPlugin']):?>
                             <a role=button 
                                 aria-label="为文章点赞" 
                                 id="social" 
-                                href="javascript:void(0);" onclick="VOID_Vote.vote(this);" 
+                                href="javascript:void(0);" onclick="VOIDPlus_Vote.vote(this);" 
                                 data-item-id="<?php echo $this->cid;?>" 
                                 data-type="up"
                                 data-table="content"

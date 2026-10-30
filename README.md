@@ -1,10 +1,10 @@
-# Typecho Theme VOID 3.5.6
+# Typecho Theme VOID-Plus 3.5.6
 
 > ✏ 一款简洁优雅的 Typecho 主题
 
 **本仓库是由 Geek0ne 独立维护的增强改进版**，在原版基础上持续维护，加入了安全加固、Typecho 1.3 / PHP 8.x 兼容等改进。
 
-作为计算机术语时，VOID 的意思是「无类型」。
+作为计算机术语时，VOID-Plus 的意思是「无类型」。
 
 ![](https://raw.githubusercontent.com/Geek0ne/VOID-Plus/master/screenshot.png)
 
@@ -45,43 +45,43 @@
 * 评论投票与自动折叠
 * 访客互动展示
 
-以及其他很多细节，总之用起来还算舒服。这里有一个[示例页面](https://blog.imalan.cn/archives/194/)，可以看到 VOID 对常用写作元素的支持以及一些特色功能演示。
+以及其他很多细节，总之用起来还算舒服。这里有一个[示例页面](https://blog.imalan.cn/archives/194/)，可以看到 VOID-Plus 对常用写作元素的支持以及一些特色功能演示。
 
 ## 开始使用
 
-1. 下载主题：[发布版](https://github.com/Geek0ne/VOID-Plus/releases)，注意是下载 VOID.zip 这个压缩包，而不是 Source code
+1. 下载主题：[发布版](https://github.com/Geek0ne/VOID-Plus/releases)，注意是下载 VOID-Plus.zip 这个压缩包，而不是 Source code
 2. 解压
-3. 将**主题文件夹下**的 VOID 文件夹上传至站点 /usr/themes 目录下
+3. 将**主题文件夹下**的 VOID-Plus 文件夹上传至站点 /usr/themes 目录下
 4. 后台启用主题
-5. 将**配套插件文件夹下**的 VOID 文件夹上传至站点 /usr/plugins 目录下
+5. 将**配套插件文件夹下**的 VOIDPlus 文件夹上传至站点 /usr/plugins 目录下
 6. 后台启用插件
 
-* 可选：将主题 `assets` 文件夹下的 `VOIDCacheRule.js` 复制一份到站点根目录，并在主题设置中启用 Service Worker 缓存。
+* 可选：将主题 `assets` 文件夹下的 `VOID-CacheRule.js` 复制一份到站点根目录，并在主题设置中启用 Service Worker 缓存。
 * 可选：主题文件夹下 advanceSetting.sample.json 中有一些高级设置，可以看看。
 
 ## **常见问题（请务必仔细阅读）**
 
 <details><summary>如何开启文章点赞？</summary><br>
 
-文章点赞功能依赖配套插件，请上传至插件目录并启用。插件随主题发行包提供（VOID.zip 的 `2.配套插件/VOID` 文件夹），上传至 `/usr/plugins` 目录后台启用即可。
+文章点赞功能依赖配套插件，请上传至插件目录并启用。插件随主题发行包提供（VOID-Plus.zip 的 `2.配套插件/VOIDPlus` 文件夹），上传至 `/usr/plugins` 目录后台启用即可。
 
 </details>
 
 <details><summary>如何开启文章浏览量统计？</summary><br>
 
-文章浏览量统计功能依赖配套插件，请上传至插件目录并启用。插件随主题发行包提供（VOID.zip 的 `2.配套插件/VOID` 文件夹），上传至 `/usr/plugins` 目录后台启用即可。
+文章浏览量统计功能依赖配套插件，请上传至插件目录并启用。插件随主题发行包提供（VOID-Plus.zip 的 `2.配套插件/VOIDPlus` 文件夹），上传至 `/usr/plugins` 目录后台启用即可。
 
 </details>
 
 <details><summary>如何开启文章字数统计？</summary><br>
 
-文章字数统计功能依赖配套插件，请上传至插件目录并启用。插件随主题发行包提供（VOID.zip 的 `2.配套插件/VOID` 文件夹），上传至 `/usr/plugins` 目录后台启用即可。
+文章字数统计功能依赖配套插件，请上传至插件目录并启用。插件随主题发行包提供（VOID-Plus.zip 的 `2.配套插件/VOIDPlus` 文件夹），上传至 `/usr/plugins` 目录后台启用即可。
 
 </details>
 
 <details><summary>下载安装后样式不对？</summary><br>
 
-仓库中的是未压缩的源代码，包含大量实际使用中不需要的文件，并且可能无法直接使用。请一定通过[发布版](https://github.com/Geek0ne/VOID-Plus/releases)下载主题，下载 VOID.zip 压缩包，而不是 Source code。
+仓库中的是未压缩的源代码，包含大量实际使用中不需要的文件，并且可能无法直接使用。请一定通过[发布版](https://github.com/Geek0ne/VOID-Plus/releases)下载主题，下载 VOID-Plus.zip 压缩包，而不是 Source code。
 
 </details>
 
@@ -176,7 +176,7 @@
 如果你有不错的想法，可以定制自己的版本。首先你需要准备好 NodeJS 环境，然后 clone 这个 repo：
 
 ```bash
-git clone https://github.com/Geek0ne/VOID-Plus ./VOID && cd ./VOID
+git clone https://github.com/Geek0ne/VOID-Plus ./VOID-Plus && cd ./VOID-Plus
 ```
 
 安装依赖：
@@ -219,7 +219,7 @@ gulp build
 * 新增：无主图文章自动回退默认头图：文章未设置主图时自动使用主题默认头图（可配合 `/wallpaper.php` 每日必应壁纸跳转实现每日自动换壁纸）。
 * 调整：移动端文章正文字号调小两号：≤767.5px 下 `.yue` 正文默认 18px → 16px，后台字号调节档位同步 -2px。
 * 调整：文章正文链接配色：未访问显示蓝色（`#0000cc`），已访问显示紫色（`#660099`），暗色模式自动切换为亮蓝/亮紫变体以保证可读性。
-* 调整：样式改动同步维护于 `assets/VOID.scss`（源码）与 `assets/VOID.css`（编译产物），执行 gulp 构建不会丢失。
+* 调整：样式改动同步维护于 `assets/VOID-Plus.scss`（源码）与 `assets/VOID-Plus.css`（编译产物），执行 gulp 构建不会丢失。
 * 调整：版本号统一为 3.5.6（`functions.php`、`package.json`、README 标题），与本更新日志保持一致。
 
 **🍰 2026-10-29 Version 3.5.5**
@@ -233,9 +233,9 @@ gulp build
 
 **🍰 2026-10-27 Version 3.5.4**
 
-* 新增：发行包随附配套插件（`2.配套插件/VOID`，同步 VOID-Plugin 仓库 2023-11 更新，含单次图片处理数量上限设置等）
+* 新增：发行包随附配套插件（`2.配套插件/VOIDPlus`，同步 VOID-Plugin 仓库 2023-11 更新，含单次图片处理数量上限设置等）
 * 新增：补回上游遗漏的 `OwO_02` 表情资源（`assets/libs/owo/`）
-* 调整：插件获取说明改为随发行包提供；发行包结构与原版一致（`1.主题/VOID` + `2.配套插件/VOID`）
+* 调整：插件获取说明改为随发行包提供；发行包结构与原版一致（`1.主题/VOID-Plus` + `2.配套插件/VOIDPlus`）
 
 **🍰 2026-10-27 Version 3.5.3**
 
@@ -255,14 +255,14 @@ gulp build
 
 **🍰 2020-07-04 Version 3.5.1**
 
-*该版本依赖 VOID 插件 1.20 及以上版本，请先禁用原插件，上传新插件后重新启用插件*
+*该版本依赖 VOID-Plus 插件 1.20 及以上版本，请先禁用原插件，上传新插件后重新启用插件*
 
 * 修复：iframe 尺寸错误（#42）
 * 修复：归档页面显示未发布的文章（#45）
 
 **🍰 2020-05-01 Version 3.5.0**
 
-*该版本依赖 VOID 插件 1.20 及以上版本，请先禁用原插件，上传新插件后重新启用插件*
+*该版本依赖 VOID-Plus 插件 1.20 及以上版本，请先禁用原插件，上传新插件后重新启用插件*
 
 * 新增：[高级设置]图片懒加载渐变（需要 CDN 支持）
 * 新增：JSON-LD 结构化数据支持

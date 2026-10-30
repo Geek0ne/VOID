@@ -32,7 +32,7 @@ gulp.task('pack:css:dep', function () {
 
 // 主 CSS 编译、autoprefix、minify
 gulp.task('pack:css:main', function () {
-    return gulp.src('./assets/VOID.scss')
+    return gulp.src('./assets/VOID-Plus.scss')
         .pipe(sass())
         .pipe(prefix(prefixerOptions))
         .pipe(minify())
@@ -64,7 +64,7 @@ gulp.task('pack:js:dep', function () {
 // 主 JS 压缩混淆
 gulp.task('pack:js:main', function () {
     return gulp.src([
-        './assets/VOID.js',
+        './assets/VOID-Plus.js',
         './assets/editor.js',
         './assets/header.js',
         './assets/check_update.js'])
@@ -86,7 +86,7 @@ gulp.task('md5', function () {
 gulp.task('move', function () {
     gulp.src(['./assets/libs/owo/**/*', './assets/libs/mathjax/**/*'], { base: './assets/libs/' })
         .pipe(gulp.dest('./build/assets/libs/'));
-    gulp.src(['./assets/sw-toolbox.js', './assets/VOIDCacheRule.js'])
+    gulp.src(['./assets/sw-toolbox.js', './assets/VOID-CacheRule.js'])
         .pipe(gulp.dest('./build/assets/'));
     gulp.src(['./assets/fonts/*'])
         .pipe(gulp.dest('./build/assets/fonts/'));
@@ -117,8 +117,8 @@ gulp.task('dev', function () {
 
 // 开发过程，监视 SCSS
 gulp.task('sass', function () {
-    return gulp.watch(['./assets/VOID.scss'], function () {
-        gulp.src('./assets/VOID.scss')
+    return gulp.watch(['./assets/VOID-Plus.scss'], function () {
+        gulp.src('./assets/VOID-Plus.scss')
             .pipe(sass())
             .pipe(gulp.dest('./assets'));
     });

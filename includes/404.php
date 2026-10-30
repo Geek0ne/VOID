@@ -7,7 +7,7 @@
  * 
 */ 
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
-$setting = $GLOBALS['VOIDSetting'];
+$setting = $GLOBALS['VOIDPlusSetting'];
 ?>
 
 <main id="pjax-container">

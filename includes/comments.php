@@ -8,7 +8,7 @@
  * @version     2019-01-15 0.1
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
-$setting = $GLOBALS['VOIDSetting'];
+$setting = $GLOBALS['VOIDPlusSetting'];
 $parameter = array(
     'parentId'      => $this->hidden ? 0 : $this->cid,
     // Typecho 1.3 中 $this->row 是原始数据行,不含旧版的 permalink/pathinfo 计算字段,
@@ -21,7 +21,7 @@ $parameter = array(
     'commentPage'   => $this->request->filter('int')->commentPage,
     'allowComment'  => $this->allow('comment')
 );
-$this->widget('VOID_Widget_Comments_Archive', $parameter)->to($comments);
+$this->widget('VOIDPlus_Widget_Comments_Archive', $parameter)->to($comments);
 ?>
 
 <div class="comments-container float-up">

@@ -176,7 +176,7 @@ article {
             margin-bottom: 2rem;
         }
         .serif & {
-            font-family: $void-font-serif;
+            font-family: $voidplus-font-serif;
         }
     }
     div.articleBody figure {
@@ -472,7 +472,7 @@ article {
 }
 
 .headline, .post-meta-index {
-    font-family: $void-font-sans!important;
+    font-family: $voidplus-font-sans!important;
 }
 
 .toc-mask {

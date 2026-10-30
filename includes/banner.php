@@ -7,7 +7,7 @@
  * 
 */ 
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
-$setting = $GLOBALS['VOIDSetting'];
+$setting = $GLOBALS['VOIDPlusSetting'];
 $banner = $setting['defaultBanner'];
 $blur = false;
 
@@ -67,12 +67,12 @@ if($this->is('post') || $this->is('page')) {
                 <p class="post-meta">
                     <?php if($this->template == 'Archives.php') {
                         echo Utils::getCatNum()." 分类 × ".Utils::getPostNum()." 文章 × ".Utils::getTagNum()." 标签";
-                        if($setting['VOIDPlugin']) echo ' × <span id="totalWordCount"></span> 字';
+                        if($setting['VOIDPlusPlugin']) echo ' × <span id="totalWordCount"></span> 字';
                     } else{ ?>
                         <span><a href="<?php $this->author->permalink(); ?>"><?php $this->author(); ?></a></span>&nbsp;•&nbsp;
                         <time datetime="<?php echo date('c', $this->created); ?>"><?php echo date('Y-m-d', $this->created); ?></time>
-                        &nbsp;•&nbsp;<a no-pjax target="_self" href="javascript:void(0);" onclick="VOID_SmoothScroller.scrollTo('#comments', -60)"><?php $this->commentsNum(); ?>&nbsp;评论</a>
-                        <?php if($setting['VOIDPlugin']) echo '&nbsp;•&nbsp;<span>'.$this->viewsNum.'&nbsp;阅读</span>'; ?>
+                        &nbsp;•&nbsp;<a no-pjax target="_self" href="javascript:void(0);" onclick="VOIDPlus_SmoothScroller.scrollTo('#comments', -60)"><?php $this->commentsNum(); ?>&nbsp;评论</a>
+                        <?php if($setting['VOIDPlusPlugin']) echo '&nbsp;•&nbsp;<span>'.$this->viewsNum.'&nbsp;阅读</span>'; ?>
                         <?php if($this->user->hasLogin()): ?>
                             <?php if($this->is('post')): ?>
                             &nbsp;•&nbsp;<a target="_blank" href="<?php echo $this->options->adminUrl.'write-post.php?cid='.$this->cid;?>">编辑</a>

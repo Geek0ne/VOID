@@ -1,6 +1,6 @@
 <?php
 /**
- * Action for VOID Plugin
+ * Action for VOID-Plus Plugin
  *
  * @author AlanDecode | 熊猫小A
  */
@@ -43,7 +43,7 @@ function widgetById($table, $pkId)
 
 $GLOBALS['ImgParsed'] = 0;
 
-class VOID_Action extends Typecho_Widget implements Widget_Interface_Do
+class VOIDPlus_Action extends Typecho_Widget implements Widget_Interface_Do
 {
     private $body = null;
     public function action()
@@ -53,15 +53,15 @@ class VOID_Action extends Typecho_Widget implements Widget_Interface_Do
         $this->on($this->request->is('content'))->vote_content();
         $this->on($this->request->is('comment'))->vote_comment();
         $this->on($this->request->is('show'))->vote_show();
-        $this->on($this->request->is('getimginfo'))->void_img_info();
-        $this->on($this->request->is('getsingleimginfo'))->void_single_img_info();
-        $this->on($this->request->is('cleanimginfo'))->void_clean_img_info();
+        $this->on($this->request->is('getimginfo'))->voidplus_img_info();
+        $this->on($this->request->is('getsingleimginfo'))->voidplus_single_img_info();
+        $this->on($this->request->is('cleanimginfo'))->voidplus_clean_img_info();
         
         //$this->response->goBack();
     }
 
     // 为图片获取长宽信息，并替换原src
-    private function void_single_img_info()
+    private function voidplus_single_img_info()
     {
         // 要求先登录
         Typecho_Widget::widget('Widget_User')->to($user);
@@ -71,11 +71,11 @@ class VOID_Action extends Typecho_Widget implements Widget_Interface_Do
         }
         
         $cid = $_GET['cid'];
-        print_r(VOID_ParseImgInfo::parse($cid));
+        print_r(VOIDPlus_ParseImgInfo::parse($cid));
     }
 
     // 清理图片长宽信息，替换 src
-    private function void_clean_img_info()
+    private function voidplus_clean_img_info()
     {
         // 要求先登录
         Typecho_Widget::widget('Widget_User')->to($user);
@@ -97,14 +97,14 @@ class VOID_Action extends Typecho_Widget implements Widget_Interface_Do
 
         for ($index=0; $index < count($rows); $index++) { 
             $row = $rows[$index];
-            $ret = VOID_ParseImgInfo::clean($row['cid']);
+            $ret = VOIDPlus_ParseImgInfo::clean($row['cid']);
 
             echo '第 '.($index+1).' 篇文章...共清理 '.$ret.' 张图片<br>'.PHP_EOL;
         }
     }
 
     // 为图片获取长宽信息，并替换原src
-    private function void_img_info()
+    private function voidplus_img_info()
     {
         // 要求先登录
         Typecho_Widget::widget('Widget_User')->to($user);
@@ -124,7 +124,7 @@ class VOID_Action extends Typecho_Widget implements Widget_Interface_Do
         
         echo '共 ' .count($rows). ' 篇文章<br>'.PHP_EOL;
 
-        $limit = Helper::options()->plugin('VOID')->parseImgLimit;
+        $limit = Helper::options()->plugin('VOIDPlus')->parseImgLimit;
         if (empty($limit)) $limit = 10;
 
         $total = 0; // 所有的图片数
@@ -136,7 +136,7 @@ class VOID_Action extends Typecho_Widget implements Widget_Interface_Do
             echo '开始处理第 '.($index+1).' 篇文章...<br>'.PHP_EOL;
 
             $row = $rows[$index];
-            $ret = VOID_ParseImgInfo::parse($row['cid']);
+            $ret = VOIDPlus_ParseImgInfo::parse($row['cid']);
 
             $total += $ret[0];
             $success += $ret[1];

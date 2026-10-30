@@ -8,7 +8,7 @@
  * @version     2019-01-15 0.1
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
-$setting = $GLOBALS['VOIDSetting']; 
+$setting = $GLOBALS['VOIDPlusSetting']; 
 
 /**
  * 在样式生效前定色，避免暗色模式下的白屏闪烁。
@@ -37,8 +37,8 @@ $inlineColorScheme = '
     if (dark) { document.documentElement.className += " theme-dark"; }
 })();';
 
-if (isset($_POST['void_action'])) {
-    if ($_POST['void_action'] == 'getLoginAction') {
+if (isset($_POST['voidplus_action'])) {
+    if ($_POST['voidplus_action'] == 'getLoginAction') {
         echo $this->options->loginAction;
         exit;
     }
@@ -129,12 +129,12 @@ if (isset($_POST['void_action'])) {
 
     <!--CSS-->
     <link rel="stylesheet" href="<?php Utils::indexTheme('/assets/bundle.css');?>">
-    <link rel="stylesheet" href="<?php Utils::indexTheme('/assets/VOID.css');?>">
+    <link rel="stylesheet" href="<?php Utils::indexTheme('/assets/VOID-Plus.css');?>">
 
     <!--JS-->
     <script src="<?php Utils::indexTheme('/assets/bundle-header.js'); ?>"></script>
     <script>
-    VOIDConfig = {
+    VOIDPlusConfig = {
         PJAX : <?php echo $setting['pjax'] ? 'true' : 'false'; ?>,
         searchBase : "<?php Utils::index("/search/"); ?>",
         home: "<?php Utils::index("/"); ?>",
@@ -145,7 +145,7 @@ if (isset($_POST['void_action'])) {
         headerMode: <?php echo $setting['headerMode']; ?>,
         followSystemColorScheme: <?php echo $setting['followSystemColorScheme'] ? 'true' : 'false'; ?>,
         browserLevelLoadingLazy: <?php echo $setting['browserLevelLoadingLazy'] ? 'true' : 'false'; ?>,
-        VOIDPlugin: <?php echo $setting['VOIDPlugin'] ? 'true' : 'false'; ?>,
+        VOIDPlusPlugin: <?php echo $setting['VOIDPlusPlugin'] ? 'true' : 'false'; ?>,
         votePath: "<?php Utils::index('/action/void?'); ?>",
         lightBg: "",
         darkBg: "",
@@ -157,7 +157,7 @@ if (isset($_POST['void_action'])) {
         horizontalBg: <?php echo empty($setting['siteBg']) ? 'false' : 'true'; ?>,
         verticalBg: <?php echo empty($setting['siteBgVertical']) ? 'false' : 'true'; ?>,
         indexStyle: <?php echo (int) $setting['indexStyle']; ?>,
-        version: '<?php echo $GLOBALS['VOIDVersion']; ?>',
+        version: '<?php echo $GLOBALS['VOIDPlusVersion']; ?>',
         isDev: true
     }
     </script>

@@ -6,7 +6,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 include 'header.php';
 include 'menu.php';
 ?>
-<link rel="stylesheet" href="<?php Helper::options()->pluginUrl('VOID/pages/votes.03.css') ?>">
+<link rel="stylesheet" href="<?php Helper::options()->pluginUrl('VOIDPlus/pages/votes.03.css') ?>">
 
 <div class="main">
     <div class="body container">
@@ -31,7 +31,7 @@ include 'common-js.php'
 <script>
 window.queryActivityUrl = "<?php Helper::options()->index('/action/void?show'); ?>";
 </script>
-<script src="<?php Helper::options()->pluginUrl('VOID/pages/votes.02.js') ?>"></script>
+<script src="<?php Helper::options()->pluginUrl('VOIDPlus/pages/votes.02.js') ?>"></script>
 
 <?php
 include 'footer.php';

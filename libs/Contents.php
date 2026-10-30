@@ -152,7 +152,7 @@ Class Contents
      */
     static public function parsePhotoSet($content)
     {
-        $setting = $GLOBALS['VOIDSetting'];
+        $setting = $GLOBALS['VOIDPlusSetting'];
 
         // 清除无用 tag
         $reg = '/\[photos(.*?)\/photos\]/s';
@@ -209,7 +209,7 @@ Class Contents
      */
     private static function parsePaopaoBiaoqingCallback($match)
     {
-        return '<img class="biaoqing" src="/usr/themes/VOID/assets/libs/owo/biaoqing/paopao/'. str_replace('%', '', urlencode($match[1])) . '_2x.png">';
+        return '<img class="biaoqing" src="/usr/themes/VOID-Plus/assets/libs/owo/biaoqing/paopao/'. str_replace('%', '', urlencode($match[1])) . '_2x.png">';
     }
 
     /**
@@ -219,7 +219,7 @@ Class Contents
      */
     private static function parseAruBiaoqingCallback($match)
     {
-        return '<img class="biaoqing" src="/usr/themes/VOID/assets/libs/owo/biaoqing/aru/'. str_replace('%', '', urlencode($match[1])) . '_2x.png">';
+        return '<img class="biaoqing" src="/usr/themes/VOID-Plus/assets/libs/owo/biaoqing/aru/'. str_replace('%', '', urlencode($match[1])) . '_2x.png">';
     }
 
     /**
@@ -229,7 +229,7 @@ Class Contents
      */
     private static function parseQuyinBiaoqingCallback($match)
     {
-        return '<img class="biaoqing" src="/usr/themes/VOID/assets/libs/owo/biaoqing/quyin/'. str_replace('%', '', urlencode($match[1])) . '.png">';
+        return '<img class="biaoqing" src="/usr/themes/VOID-Plus/assets/libs/owo/biaoqing/quyin/'. str_replace('%', '', urlencode($match[1])) . '.png">';
     }
 
     /**
@@ -239,7 +239,7 @@ Class Contents
      */
     private static function parseBilibiliBiaoqingCallback($match)
     {
-        return '<img class="biaoqing" src="/usr/themes/VOID/assets/libs/owo/biaoqing/2233/'. str_replace('%', '', urlencode($match[1])) . '.png">';
+        return '<img class="biaoqing" src="/usr/themes/VOID-Plus/assets/libs/owo/biaoqing/2233/'. str_replace('%', '', urlencode($match[1])) . '.png">';
     }
 
     /**
@@ -249,7 +249,7 @@ Class Contents
      */
      private static function parseMihoyoBiaoqingCallback($match)
      {
-         return '<img class="biaoqing" src="/usr/themes/VOID/assets/libs/owo/biaoqing/mihoyo/'. str_replace('%', '', urlencode($match[1])) . '.png">';
+         return '<img class="biaoqing" src="/usr/themes/VOID-Plus/assets/libs/owo/biaoqing/mihoyo/'. str_replace('%', '', urlencode($match[1])) . '.png">';
      }
 
     /**
@@ -272,7 +272,7 @@ Class Contents
      */
     public static function genBluredPlaceholderSrc($src)
     {
-        $setting = $GLOBALS['VOIDSetting'];
+        $setting = $GLOBALS['VOIDPlusSetting'];
         $cdn_config = $setting['CDNType'];
         $addons = array(
             "UPYUN" => '!/max/64',
@@ -300,7 +300,7 @@ Class Contents
      */
     private static function parseFancyBoxCallback($match)
     {
-        $setting = $GLOBALS['VOIDSetting'];
+        $setting = $GLOBALS['VOIDPlusSetting'];
         $src_ori = $match[1];
         $src = $src_ori;
         $classList = '';
@@ -542,7 +542,7 @@ Class Contents
                 'title' => $row['title'],
                 'permalink' => self::permalink($row));
 
-            if(Utils::isPluginAvailable('VOID')) {
+            if(Utils::isPluginAvailable('VOIDPlus')) {
                 $arr['words'] = $row['wordCount'];
             }
 
