@@ -6,14 +6,11 @@
 
 ![](https://raw.githubusercontent.com/Geek0ne/VOID/master/screenshot.png)
 
-[![Build](https://github.com/Geek0ne/VOID/actions/workflows/ci.yml/badge.svg)](https://github.com/Geek0ne/VOID/actions) [![release](https://img.shields.io/github/v/release/Geek0ne/VOID?style=flat-square)](https://github.com/Geek0ne/VOID/releases) ![](https://img.shields.io/github/license/Geek0ne/VOID.svg?style=flat-square)
-
-## 最新修改（2026-10-30）
-
-* **移动端文章正文字号调小两号**：≤767.5px 下 `.yue` 正文默认 18px → 16px，后台字号调节档位同步 -2px
-* **文章正文链接配色**：未访问显示蓝色（`#0000cc`），已访问显示紫色（`#660099`），暗色模式自动切换为亮蓝/亮紫变体以保证可读性
-
-> 以上修改同步维护于 `assets/VOID.scss`（源码）与 `assets/VOID.css`（编译产物），执行 gulp 构建不会丢失。
+<p align="center">
+  <a href="https://github.com/Geek0ne/VOID/actions"><img alt="Build" src="https://github.com/Geek0ne/VOID/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://github.com/Geek0ne/VOID/releases"><img alt="release" src="https://img.shields.io/github/v/release/Geek0ne/VOID?style=flat-square"></a>
+  <a href="https://github.com/Geek0ne/VOID/blob/master/LICENSE"><img alt="license" src="https://img.shields.io/github/license/Geek0ne/VOID?style=flat-square"></a>
+</p>
 
 ## 特性
 
@@ -211,6 +208,15 @@ gulp build
 </details>
 
 ## 更新日志
+
+**🍰 2026-10-30 Version 3.5.6**
+
+样式优化版本：
+
+* **移动端文章正文字号调小两号**：≤767.5px 下 `.yue` 正文默认 18px → 16px，后台字号调节档位同步 -2px
+* **文章正文链接配色**：未访问显示蓝色（`#0000cc`），已访问显示紫色（`#660099`），暗色模式自动切换为亮蓝/亮紫变体以保证可读性
+
+> 以上修改同步维护于 `assets/VOID.scss`（源码）与 `assets/VOID.css`（编译产物），执行 gulp 构建不会丢失。
 
 **🍰 2026-10-29 Version 3.5.5**
 
