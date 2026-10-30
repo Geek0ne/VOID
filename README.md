@@ -50,7 +50,7 @@
 
 ## 开始使用
 
-1. 下载主题：[发布版](https://github.com/Geek0ne/VOID-Plus/releases)，注意是下载 VOID-Plus.zip 这个压缩包，而不是 Source code
+1. 下载主题：[发布版](https://github.com/Geek0ne/VOID-Plus/releases)，注意是下载 VOID-Plus-x.y.z.zip 这个压缩包，而不是 Source code
 2. 解压
 3. 将**主题文件夹下**的 VOID-Plus 文件夹上传至站点 /usr/themes 目录下
 4. 后台启用主题
@@ -82,7 +82,7 @@
 
 <details><summary>下载安装后样式不对？</summary><br>
 
-仓库中的是未压缩的源代码，包含大量实际使用中不需要的文件，并且可能无法直接使用。请一定通过[发布版](https://github.com/Geek0ne/VOID-Plus/releases)下载主题，下载 VOID-Plus.zip 压缩包，而不是 Source code。
+仓库中的是未压缩的源代码，包含大量实际使用中不需要的文件，并且可能无法直接使用。请一定通过[发布版](https://github.com/Geek0ne/VOID-Plus/releases)下载主题，下载 VOID-Plus-x.y.z.zip 压缩包，而不是 Source code。
 
 </details>
 
@@ -168,6 +168,8 @@
 
 某些版本由于改用幅度较大需要重启主题与插件，请参见对应版本的发布日志。
 
+> 3.5.6 起主题目录更名为 `VOID-Plus`、配套插件目录更名为 `VOIDPlus`。从旧版本升级请先在后台停用并删除旧主题与旧插件，再上传新目录，详见[发布页](https://github.com/Geek0ne/VOID-Plus/releases)中的「安装 / 升级步骤」。
+
 ## 开发与自定义
 
 **首先注意：我不保证提供任何自定义修改相关的指导与帮助。You are on your own.**
@@ -212,6 +214,8 @@ gulp build
 ## 更新日志
 
 **🍰 2026-10-30 Version 3.5.6（开发中）**
+
+新增必要模块、样式规范优化与 Bug 修复：
 
 * 新增：页眉右上角新增昼夜模式切换按钮，可在后台模式之外手动切换深浅色
 * 新增：后台新增备案号设置，页脚显示带国徽图标的备案号并链接至工信部查询

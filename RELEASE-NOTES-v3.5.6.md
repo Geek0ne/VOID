@@ -8,3 +8,38 @@
 - ✨ **无主图文章回退默认头图**：文章未设置主图时自动回退使用主题默认头图
 - 🎨 **移动端文章正文字号调小两号**：18px → 16px
 - 🎨 **正文链接蓝紫配色**：未访问显示蓝色、已访问显示紫色，暗色模式同步适配
+
+---
+
+## 安装 / 升级
+
+### 全新安装
+
+1. 在[发布页](https://github.com/Geek0ne/VOID-Plus/releases)下载 `VOID-Plus-3.5.6.zip`
+2. 解压后得到两个目录：
+   - `1.主题/VOID-Plus` → 整个目录上传到站点的 `/usr/themes` 目录
+   - `2.配套插件/VOIDPlus` → 整个目录上传到站点的 `/usr/plugins` 目录
+3. 后台「外观」启用 **VOID-Plus** 主题
+4. 后台「插件」启用 **VOIDPlus** 插件（文章字数统计、点赞、浏览量统计依赖它）
+5. 可选：把主题 `assets/VOID-Plus-CacheRule.js` 复制一份到站点根目录，并在主题设置「自定义 Service Worker」中填好该文件名
+
+### 从 3.5.5 及更早版本升级
+
+⚠️ 3.5.6 起主题目录由 `VOID` 更名为 `VOID-Plus`、插件目录由 `VOID` 更名为 `VOIDPlus`，请按下列顺序操作，避免残留旧目录：
+
+1. 后台「外观」**停用并删除**旧主题 `VOID`；后台「插件」**停用并删除**旧插件 `VOID`
+2. 上传 `1.主题/VOID-Plus` 到 `/usr/themes`，上传 `2.配套插件/VOIDPlus` 到 `/usr/plugins`
+3. 重新启用主题与插件
+
+> **主题设置会被重置**：Typecho 在切换外观时会删除旧外观的设置记录。若你此前配置过 head / footer 代码、高级设置等，请重新填写一次。
+>
+> 想保留原有设置，可在切换外观**之前**把数据库中的设置项改名：
+> ```sql
+> UPDATE typecho_options SET name = 'theme:VOID-Plus' WHERE name = 'theme:VOID';
+> ```
+
+### 升级注意事项
+
+- 插件目录名变化后，原插件的设置项（单次图片处理数量上限）需在新插件中重新设置
+- 主题设置中的「自定义 Service Worker」若指向旧文件名 `VOIDCacheRule.js`，请同步改为 `VOID-Plus-CacheRule.js`
+- 数据库中若残留 `theme:VOID`、`plugin:VOID` 两项，可在确认新版本运行正常后手动删除

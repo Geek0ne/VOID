@@ -18,6 +18,7 @@ jobs:
         run: |
           set -e
           # 严格从 tag 指向的已提交内容打包（未提交/未推送的改动不会进入发行包）
+          VERSION="${GITHUB_REF_NAME#v}"
           mkdir -p dist/extract "dist/pkg/1.主题/VOID-Plus" "dist/pkg/2.配套插件/VOIDPlus"
           git archive --format=tar HEAD | tar -x -C dist/extract
           cd dist/extract
@@ -26,9 +27,9 @@ jobs:
           done
           cp -r plugin/VOIDPlus/. "../pkg/2.配套插件/VOIDPlus/"
           cd ../pkg
-          zip -qr ../VOID-Plus.zip "1.主题" "2.配套插件"
+          zip -qr "../VOID-Plus-${VERSION}.zip" "1.主题" "2.配套插件"
           cd ../..
-          echo "dist/VOID-Plus.zip 打包完成: $(du -h dist/VOID-Plus.zip | cut -f1)"
+          echo "dist/VOID-Plus-${VERSION}.zip 打包完成: $(du -h dist/VOID-Plus-${VERSION}.zip | cut -f1)"
 
       - name: Create Release and Upload Asset
         uses: actions/github-script@v7
@@ -36,7 +37,8 @@ jobs:
           script: |
             const fs = require('fs');
             const tag = process.env.GITHUB_REF_NAME;
-            const title = 'VOID-Plus ' + tag.replace(/^v/, '');
+            const version = tag.replace(/^v/, '');
+            const title = 'VOID-Plus ' + version;
             const notesFile = 'RELEASE-NOTES-' + tag + '.md';
             const notes = fs.existsSync(notesFile) ? fs.readFileSync(notesFile, 'utf8') : null;
             let release = null;
@@ -57,13 +59,13 @@ jobs:
               });
               release = created.data;
             }
-            const assetName = 'VOID-Plus.zip';
+            const assetName = `VOID-Plus-${version}.zip`;
             for (const asset of (release.assets || [])) {
               if (asset.name === assetName) {
                 await github.rest.repos.deleteReleaseAsset({ owner: context.repo.owner, repo: context.repo.repo, asset_id: asset.id });
               }
             }
-            const data = fs.readFileSync('dist/VOID-Plus.zip');
+            const data = fs.readFileSync(`dist/VOID-Plus-${version}.zip`);
             await github.rest.repos.uploadReleaseAsset({
               owner: context.repo.owner,
               repo: context.repo.repo,
