@@ -37,3 +37,4 @@ body:not(.macStyleCodeBlock).theme-dark .yue pre .code-toolbar{background:rgba(3
 .copyright-notice p{margin:.3em 0}
 .copyright-notice a{display:inline-flex;align-items:center}
 .copyright-notice a .voidicon-link-ext{font-size:.9em;margin-left:.2em}
+.cc-icon{width:1.05em;height:1.05em;flex:none;display:block;margin-right:.25em}

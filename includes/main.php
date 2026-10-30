@@ -41,7 +41,9 @@ $setting = $GLOBALS['VOIDPlusSetting'];
                     } ?>
 
                     <?php if(!empty($setting['copyright'])): ?>
+                    <?php $permalink = $this->permalink; ?>
                     <blockquote class="copyright-notice">
+                        <p>本文链接：<a href="<?php echo Utils::esc($permalink); ?>"><?php echo Utils::esc($permalink); ?></a></p>
                         <?php echo $setting['copyright']; ?>
                         <p>转载或引用请标注来源。</p>
                     </blockquote>

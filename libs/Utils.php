@@ -285,15 +285,19 @@ class Utils
     /**
      * 版权说明默认值
      *
-     * 支持 HTML,便于自行添加链接出处与图标。
+     * 单行声明，含 Creative Commons 官方图标与许可协议链接。
+     * 支持 HTML，便于自行添加链接出处与图标。
      *
      * @return string
      */
     public static function getCopyrightDefault()
     {
-        return '<p>如无特殊说明，本站原创内容根据 '
+        return '<p>本网站内容均采用 '
             . '<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer nofollow">'
-            . '知识共享 署名 4.0 国际许可协议<i class="voidicon-link-ext"></i></a> 进行许可。</p>';
+            . '<svg class="cc-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">'
+            . '<circle cx="12" cy="12" r="10.2" fill="none" stroke="currentColor" stroke-width="1.7"></circle>'
+            . '<text x="12" y="16.1" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="10.5" font-weight="700" fill="currentColor">cc</text>'
+            . '</svg>知识共享署名 4.0 国际许可协议</a>进行许可。</p>';
     }
 
     /**
