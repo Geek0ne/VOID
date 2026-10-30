@@ -2,14 +2,16 @@
 
 > ✏ 一款简洁优雅的 Typecho 主题
 
+**本仓库是由 Geek0ne 独立维护的增强改进版**，在原版基础上持续维护，加入了安全加固、Typecho 1.3 / PHP 8.x 兼容等改进。
+
 作为计算机术语时，VOID 的意思是「无类型」。
 
-![](https://raw.githubusercontent.com/Geek0ne/VOID/master/screenshot.png)
+![](https://raw.githubusercontent.com/Geek0ne/VOID-Plus/master/screenshot.png)
 
 <p align="center">
-  <a href="https://github.com/Geek0ne/VOID/actions"><img alt="Build" src="https://github.com/Geek0ne/VOID/actions/workflows/ci.yml/badge.svg"></a>
-  <a href="https://github.com/Geek0ne/VOID/releases"><img alt="release" src="https://img.shields.io/github/v/release/Geek0ne/VOID?style=flat-square"></a>
-  <a href="https://github.com/Geek0ne/VOID/blob/master/LICENSE"><img alt="license" src="https://img.shields.io/github/license/Geek0ne/VOID?style=flat-square"></a>
+  <a href="https://github.com/Geek0ne/VOID-Plus/actions"><img alt="Build" src="https://github.com/Geek0ne/VOID-Plus/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://github.com/Geek0ne/VOID-Plus/releases"><img alt="release" src="https://img.shields.io/github/v/release/Geek0ne/VOID-Plus?style=flat-square"></a>
+  <a href="https://github.com/Geek0ne/VOID-Plus/blob/master/LICENSE"><img alt="license" src="https://img.shields.io/github/license/Geek0ne/VOID-Plus?style=flat-square"></a>
 </p>
 ## 特性
 
@@ -47,7 +49,7 @@
 
 ## 开始使用
 
-1. 下载主题：[发布版](https://github.com/Geek0ne/VOID/releases)，注意是下载 VOID.zip 这个压缩包，而不是 Source code
+1. 下载主题：[发布版](https://github.com/Geek0ne/VOID-Plus/releases)，注意是下载 VOID.zip 这个压缩包，而不是 Source code
 2. 解压
 3. 将**主题文件夹下**的 VOID 文件夹上传至站点 /usr/themes 目录下
 4. 后台启用主题
@@ -79,7 +81,7 @@
 
 <details><summary>下载安装后样式不对？</summary><br>
 
-仓库中的是未压缩的源代码，包含大量实际使用中不需要的文件，并且可能无法直接使用。请一定通过[发布版](https://github.com/Geek0ne/VOID/releases)下载主题，下载 VOID.zip 压缩包，而不是 Source code。
+仓库中的是未压缩的源代码，包含大量实际使用中不需要的文件，并且可能无法直接使用。请一定通过[发布版](https://github.com/Geek0ne/VOID-Plus/releases)下载主题，下载 VOID.zip 压缩包，而不是 Source code。
 
 </details>
 
@@ -174,7 +176,7 @@
 如果你有不错的想法，可以定制自己的版本。首先你需要准备好 NodeJS 环境，然后 clone 这个 repo：
 
 ```bash
-git clone https://github.com/Geek0ne/VOID ./VOID && cd ./VOID
+git clone https://github.com/Geek0ne/VOID-Plus ./VOID && cd ./VOID
 ```
 
 安装依赖：
@@ -280,7 +282,7 @@ gulp build
 
 从 2.2 版本起，主题部分功能需要配套插件支持，例如文章点赞、浏览量统计、字数统计等。**请先卸载**原来的 Likes、TePostViews 插件，否则数据会出现错误！TePostViews 插件卸载前请设置为**卸载后保留数据**，以防丢失浏览数据。
 
-更多：[change-log.md](https://github.com/Geek0ne/VOID/blob/master/change-log.md)
+更多：[change-log.md](https://github.com/Geek0ne/VOID-Plus/blob/master/change-log.md)
 
 ## 鸣谢
 

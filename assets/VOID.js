@@ -4,9 +4,9 @@
 /* eslint-disable no-console */
 // VOID
 // Author: Geek0ne
-// Link: https://github.com/Geek0ne/VOID
+// Link: https://github.com/Geek0ne/VOID-Plus
 
-console.log(' %c Theme VOID %c https://github.com/Geek0ne/VOID ', 'color: #fadfa3; background: #23b7e5; padding:5px;', 'background: #1c2b36; padding:5px;');
+console.log(' %c Theme VOID %c https://github.com/Geek0ne/VOID-Plus ', 'color: #fadfa3; background: #23b7e5; padding:5px;', 'background: #1c2b36; padding:5px;');
 
 var VOID_Content = {
     countWords: function () {
