@@ -32,13 +32,20 @@ $setting = $GLOBALS['VOIDPlusSetting'];
                         <?php $this->content(); ?>
                     </div>
                     
-                    <?php $tags = Contents::getTags($this->cid); if (count($tags) > 0) { 
+                    <?php $tags = Contents::getTags($this->cid); if (count($tags) > 0) {
                         echo '<section class="tags">';
                         foreach ($tags as $tag) {
                             echo '<a href="'.$tag['permalink'].'" rel="tag" class="tag-item">'.$tag['name'].'</a>';
                         }
                         echo '</section>';
                     } ?>
+
+                    <?php if(!empty($setting['copyright'])): ?>
+                    <blockquote class="copyright-notice">
+                        <?php echo $setting['copyright']; ?>
+                        <p>转载或引用请标注来源。</p>
+                    </blockquote>
+                    <?php endif; ?>
 
                     <div class="social-button" 
                         data-url="<?php $this->permalink(); ?>"

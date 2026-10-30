@@ -75,6 +75,16 @@ function themeConfig($form)
     // 高级设置
     $reward = new Typecho_Widget_Helper_Form_Element_Text('reward', null, '', '打赏二维码', '图片链接，只允许一张图片，更多请自行合成。');
     $form->addInput($reward);
+
+    // 备案号
+    $beian = new Typecho_Widget_Helper_Form_Element_Radio('beian', array('0' => '不显示', '1' => '显示'), '0', '显示备案号', '在网站底部显示备案号信息。');
+    $form->addInput($beian);
+    $beianText = new Typecho_Widget_Helper_Form_Element_Text('beianText', null, '', '备案号', '请填写备案号，例如：粤ICP备XXXXXXXX号。');
+    $form->addInput($beianText);
+
+    // 版权说明
+    $copyright = new Typecho_Widget_Helper_Form_Element_Textarea('copyright', null, Utils::getCopyrightDefault(), '版权说明', '显示在网站底部与文章末尾，支持 HTML（可自行添加链接与图标）。留空则不显示。');
+    $form->addInput($copyright);
     $serifincontent = new Typecho_Widget_Helper_Form_Element_Radio('serifincontent', array('0' => '不启用', '1' => '启用'), '0', '文章内容使用衬线体', '是否对文章内容启用衬线体（思源宋体）。此服务由 Google Fonts 提供，可能会有加载较慢的情况。');
     $form->addInput($serifincontent);
     $lazyload = new Typecho_Widget_Helper_Form_Element_Radio('lazyload', array('1' => '启用', '0' => '不启用'), '1', '图片懒加载', '是否启用图片懒加载。');

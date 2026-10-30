@@ -25,12 +25,21 @@ $setting = $GLOBALS['VOIDPlusSetting'];
 $inlineColorScheme = '
 (function(){
     var mode = ' . (int) $setting['colorScheme'] . ';
-    if (mode === 2) { return; }
     var dark = false;
     try {
+        var m = document.cookie.match(/(?:^|; )theme_dark_manual=([^;]*)/);
         var c = document.cookie.match(/(?:^|; )theme_dark=([^;]*)/);
-        if (c) { dark = (decodeURIComponent(c[1]) === "1"); }
-        else if (' . ($setting['followSystemColorScheme'] ? 'true' : 'false') . ' && window.matchMedia) {
+        var manual = (m && decodeURIComponent(m[1]) === "1");
+        if (manual) {
+            // 用户手动切换过，以用户选择为准
+            dark = (c && decodeURIComponent(c[1]) === "1");
+        } else if (mode === 2) {
+            dark = true;
+        } else if (mode === 1) {
+            dark = false;
+        } else if (c) {
+            dark = (decodeURIComponent(c[1]) === "1");
+        } else if (' . ($setting['followSystemColorScheme'] ? 'true' : 'false') . ' && window.matchMedia) {
             dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         }
     } catch (e) {}

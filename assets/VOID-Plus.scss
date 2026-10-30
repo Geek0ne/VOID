@@ -849,3 +849,83 @@ body:not(.macStyleCodeBlock) .yue pre .code-toolbar {
 body:not(.macStyleCodeBlock).theme-dark .yue pre .code-toolbar {
     background: rgba(30, 30, 30, 0.72);
 }
+
+/* ===== 自定义增强（2026-10-31）
+   1. 昼夜模式切换按钮（页眉右上角）
+   2. 备案号（页脚）
+   3. 版权说明（页脚 + 文章末尾引用框）
+   ===================================== */
+#toggle-night-mode {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: -0.55rem;
+    font-size: 1.35rem;
+    line-height: 1.6;
+    padding: 0 0.35rem;
+    border-radius: 0.4rem;
+    i {
+        display: block;
+        transition: transform 0.45s $animationTimingFunc;
+    }
+    .voidicon-sun {
+        display: none;
+    }
+    .theme-dark & {
+        .voidicon-sun {
+            display: block;
+        }
+        .voidicon-moon {
+            display: none;
+        }
+    }
+    &.switching i {
+        transform: rotate(180deg);
+    }
+}
+
+.beian {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.35em;
+    .beian-icon {
+        width: 1em;
+        height: 1em;
+        flex: none;
+        display: block;
+    }
+    @media screen and (max-width: 767px) {
+        justify-content: flex-start;
+    }
+}
+
+.copyright {
+    p {
+        margin: 0.2em 0;
+    }
+    a {
+        display: inline-flex;
+        align-items: center;
+        .voidicon-link-ext {
+            font-size: 0.9em;
+            margin-left: 0.2em;
+        }
+    }
+}
+
+.copyright-notice {
+    margin-top: 1.2em;
+    p {
+        margin: 0.3em 0;
+    }
+    a {
+        display: inline-flex;
+        align-items: center;
+        .voidicon-link-ext {
+            font-size: 0.9em;
+            margin-left: 0.2em;
+        }
+    }
+}

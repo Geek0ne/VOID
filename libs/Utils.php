@@ -283,8 +283,22 @@ class Utils
     }
 
     /**
+     * 版权说明默认值
+     *
+     * 支持 HTML,便于自行添加链接出处与图标。
+     *
+     * @return string
+     */
+    public static function getCopyrightDefault()
+    {
+        return '<p>如无特殊说明，本站原创内容根据 '
+            . '<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer nofollow">'
+            . '知识共享 署名 4.0 国际许可协议<i class="voidicon-link-ext"></i></a> 进行许可。</p>';
+    }
+
+    /**
      * 超高级设置
-     * 
+     *
      * @return array
      */
     public static function getVOIDPlusSettings()
@@ -306,7 +320,10 @@ class Utils
             'indexBannerSubtitle' => '',
             'serviceworker' => '',
             'colorScheme' => 0, // 0: 自动，1: 日间，2: 夜间
-            'reward' => ''
+            'reward' => '',
+            'beian' => '0',
+            'beianText' => '',
+            'copyright' => self::getCopyrightDefault()
         );
 
         $keys = array_keys($themeSetting);
@@ -314,6 +331,11 @@ class Utils
             if(!empty($options->{$key})){
                 $themeSetting[$key] = $options->{$key};
             }
+        }
+
+        // 版权说明允许留空(用户可能主动关闭),不能沿用上面的 !empty 判断
+        if (isset($options->copyright)) {
+            $themeSetting['copyright'] = $options->copyright;
         }
 
         // 一些类型变换

@@ -17,7 +17,11 @@ if($this->is('post') || $this->is('page')) {
 ?>
 
 <body fontsize="<?php echo Utils::getTextSize($setting); ?>" class="<?php
-        if($setting['colorScheme'] == 0){
+        // 用户手动切换过昼夜模式时，以用户选择为准，不再受后台 colorScheme 限制
+        $manualSwitch = isset($_COOKIE['theme_dark_manual']) && $_COOKIE['theme_dark_manual'] == '1';
+        if($manualSwitch){
+            echo((isset($_COOKIE['theme_dark']) && $_COOKIE['theme_dark'] == '1') ? 'theme-dark' : '');
+        } elseif($setting['colorScheme'] == 0){
             echo((isset($_COOKIE['theme_dark']) && $_COOKIE['theme_dark'] == '1') ? 'theme-dark' : '');
         } elseif ($setting['colorScheme'] == 2) {
             echo 'theme-dark';
@@ -79,8 +83,15 @@ if($this->is('post') || $this->is('page')) {
                         <input onkeydown="VOIDPlus.enterSearch(this);" type="text" name="search-content" id="search" required />
                     </span>
                 <?php endif; ?>
-                <a <?php if(Utils::isPluginAvailable('ExSearch')) echo 'class="search-form-input" style="display:flex"'; ?> 
-                    role=button aria-label="展开搜索" id="toggle-mobile-search" target="_self" 
+                <a role="button" aria-label="切换昼夜模式" id="toggle-night-mode"
+                    class="toggle-night<?php echo Utils::isPluginAvailable('ExSearch') ? '' : ' has-desktop-search'; ?>"
+                    target="_self" href="javascript:void(0);"
+                    onclick="VOIDPlus_Ui.DarkModeSwitcher.toggleNightMode();">
+                    <i class="voidicon-moon"></i>
+                    <i class="voidicon-sun"></i>
+                </a>
+                <a <?php if(Utils::isPluginAvailable('ExSearch')) echo 'class="search-form-input" style="display:flex"'; ?>
+                    role=button aria-label="展开搜索" id="toggle-mobile-search" target="_self"
                     href="javascript:void(0);" 
                     onclick="<?php if(!Utils::isPluginAvailable('ExSearch')) echo 'VOIDPlus_Ui.toggleSearch(this);'; ?>">
                     <i class="voidicon-search"></i>

@@ -145,7 +145,7 @@ header{
             }
             span.search-form-desktop{
                 position: absolute;
-                right: 0;
+                right: 2.4rem;
                 top: 50%;
                 transform: translateY(-50%);
                 label{
@@ -182,7 +182,7 @@ header{
             #toggle-mobile-search{
                 display: none;
                 position: absolute;
-                right: -0.55rem;
+                right: 2rem;
                 font-size: 1.4rem;
                 line-height: 1.7;
                 @media screen and (max-width: 767px) {

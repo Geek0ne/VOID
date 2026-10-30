@@ -459,6 +459,17 @@ VOIDPlus_Ui = {
 
     DarkModeSwitcher: {
         checkColorScheme: function () {
+            // 用户手动切换过，尊重用户的选择，不再按后台模式自动覆盖
+            if (VOIDPlus_Util.getCookie('theme_dark_manual') == '1') {
+                var manualNight = VOIDPlus_Util.getCookie('theme_dark');
+                if (manualNight == '0') {
+                    document.body.classList.remove('theme-dark');
+                } else if (manualNight == '1') {
+                    document.body.classList.add('theme-dark');
+                }
+                return;
+            }
+
             // 非自动模式
             if (VOIDPlusConfig.colorScheme != 0) {
                 return;
@@ -525,6 +536,27 @@ VOIDPlus_Ui = {
                     $('#toggle-night').removeClass('switching');
                 }, 1000);
             }, 600);
+        },
+
+        // 手动切换昼夜模式：后台 colorScheme 决定默认行为，用户点击后以用户选择为准
+        toggleNightMode: function () {
+            var btn = $('#toggle-night-mode');
+            btn.addClass('switching');
+            var isDark = document.body.classList.contains('theme-dark');
+            if (isDark) {
+                document.body.classList.remove('theme-dark');
+                document.documentElement.classList.remove('theme-dark');
+                VOIDPlus_Util.setCookie('theme_dark', '0', 0);
+            } else {
+                document.body.classList.add('theme-dark');
+                document.documentElement.classList.add('theme-dark');
+                VOIDPlus_Util.setCookie('theme_dark', '1', 0);
+            }
+            // 标记为用户手动选择，后续不再被后台模式或定时逻辑覆盖
+            VOIDPlus_Util.setCookie('theme_dark_manual', '1', 0);
+            setTimeout(function () {
+                btn.removeClass('switching');
+            }, 450);
         }
     },
 
