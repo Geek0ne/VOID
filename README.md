@@ -11,15 +11,6 @@
   <a href="https://github.com/Geek0ne/VOID/releases"><img alt="release" src="https://img.shields.io/github/v/release/Geek0ne/VOID?style=flat-square"></a>
   <a href="https://github.com/Geek0ne/VOID/blob/master/LICENSE"><img alt="license" src="https://img.shields.io/github/license/Geek0ne/VOID?style=flat-square"></a>
 </p>
-## 最新修改（2026-10-30）
-
-* **移动端文章正文字号调小两号**：≤767.5px 下 `.yue` 正文默认 18px → 16px，后台字号调节档位同步 -2px
-* **文章正文链接配色**：未访问显示蓝色（`#0000cc`），已访问显示紫色（`#660099`），暗色模式自动切换为亮蓝/亮紫变体以保证可读性
-* **无主图文章自动回退默认头图**：文章未设置主图时自动使用主题默认头图（可配合 `/wallpaper.php` 每日必应壁纸跳转实现每日自动换壁纸）
-* **代码块增强**：右上角显示编程语言标签 + 一键复制按钮；语法高亮支持 60+ 种语言（含 Rust / Golang / 汇编 / TypeScript / Kotlin / Scala / Groovy / Perl / Dockerfile / NGINX / INI 等）；`k8s`、`helm`、`compose` 等围栏自动按 YAML 处理，`conf` 按 INI 处理，兼容大写围栏
-
-> 以上修改同步维护于 `assets/VOID.scss`（源码）与 `assets/VOID.css`（编译产物），执行 gulp 构建不会丢失。
-
 ## 特性
 
 > 原介绍文章：[VOID：现在可以公开的情报](https://blog.imalan.cn/archives/247/)。
@@ -219,8 +210,10 @@ gulp build
 
 **🍰 2026-10-30 Version 3.5.6**
 
-样式优化版本：
+新增与样式优化版本（按时间由近到远）：
 
+* 新增：代码块增强：右上角显示编程语言标签 + 一键复制按钮；语法高亮支持 60+ 种语言（含 Rust / Golang / 汇编 / TypeScript / Kotlin / Scala / Groovy / Perl / Dockerfile / NGINX / INI 等）；`k8s`、`helm`、`compose` 等围栏自动按 YAML 处理，`conf` 按 INI 处理，兼容大写围栏。
+* 新增：无主图文章自动回退默认头图：文章未设置主图时自动使用主题默认头图（可配合 `/wallpaper.php` 每日必应壁纸跳转实现每日自动换壁纸）。
 * 调整：移动端文章正文字号调小两号：≤767.5px 下 `.yue` 正文默认 18px → 16px，后台字号调节档位同步 -2px。
 * 调整：文章正文链接配色：未访问显示蓝色（`#0000cc`），已访问显示紫色（`#660099`），暗色模式自动切换为亮蓝/亮紫变体以保证可读性。
 * 调整：样式改动同步维护于 `assets/VOID.scss`（源码）与 `assets/VOID.css`（编译产物），执行 gulp 构建不会丢失。
