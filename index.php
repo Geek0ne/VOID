@@ -6,7 +6,7 @@
  * 
  * @package     Typecho-Theme-VOID
  * @author      Geek0ne
- * @version     3.5.5
+ * @version     3.5.6
  * @link        https://github.com/Geek0ne/VOID
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
