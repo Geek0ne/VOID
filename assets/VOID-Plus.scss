@@ -799,6 +799,7 @@ body:not(.macStyleCodeBlock) .yue pre .code-toolbar {
 .yue pre .code-lang {
     font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
     font-size: 12px;
+    font-weight: bold;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: rgba(0, 0, 0, 0.32);
@@ -912,6 +913,14 @@ body:not(.macStyleCodeBlock).theme-dark .yue pre .code-toolbar {
             font-size: 0.9em;
             margin-left: 0.2em;
         }
+    }
+}
+
+/* 页脚对所有后代统一设了 color，需提高特异性才能让版权链接显示为蓝色 */
+footer .container section .copyright a {
+    color: #7ea6ff;
+    &:visited {
+        color: #c58af9;
     }
 }
 
