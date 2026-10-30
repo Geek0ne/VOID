@@ -9,10 +9,11 @@
 ![](https://raw.githubusercontent.com/Geek0ne/VOID-Plus/master/screenshot.png)
 
 <p align="center">
-  <a href="https://github.com/Geek0ne/VOID-Plus/actions"><img alt="Build" src="https://github.com/Geek0ne/VOID-Plus/actions/workflows/ci.yml/badge.svg"></a>
-  <a href="https://github.com/Geek0ne/VOID-Plus/releases"><img alt="release" src="https://img.shields.io/github/v/release/Geek0ne/VOID-Plus?style=flat-square"></a>
+  <a href="https://github.com/Geek0ne/VOID-Plus/actions"><img alt="Build" src="https://github.com/Geek0ne/VOID-Plus/actions/workflows/ci.yml/badge.svg"></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://github.com/Geek0ne/VOID-Plus/releases"><img alt="release" src="https://img.shields.io/github/v/release/Geek0ne/VOID-Plus?style=flat-square"></a>&nbsp;&nbsp;&nbsp;
   <a href="https://github.com/Geek0ne/VOID-Plus/blob/master/LICENSE"><img alt="license" src="https://img.shields.io/github/license/Geek0ne/VOID-Plus?style=flat-square"></a>
 </p>
+
 ## 特性
 
 > 原介绍文章：[VOID：现在可以公开的情报](https://blog.imalan.cn/archives/247/)。
@@ -214,44 +215,44 @@ gulp build
 
 新增、样式优化与修复版本（按时间由近到远）：
 
-* 修复：归档页（Archives）文章链接丢失并输出 PHP 警告——Typecho 1.3 起 `Widget\Base\Contents::filter()` 不再向数据行写入 `permalink` 字段，`Contents::archives()` 仍直接读取 `$row['permalink']`，在 PHP 8 下会抛出 `Undefined array key "permalink"` 警告（警告文本会直接混入页面 HTML），归档列表的文章链接也随之变为空值；现按核心同款算法（路由表 + 站点 index）为纯数据行补出永久链接，与 `sitemap.php` 的处理方式保持一致，同时修正摘要分支误用旧版 `content` 列名的问题。
-* 新增：代码块增强：右上角显示编程语言标签 + 一键复制按钮；语法高亮支持 60+ 种语言（含 Rust / Golang / 汇编 / TypeScript / Kotlin / Scala / Groovy / Perl / Dockerfile / NGINX / INI 等）；`k8s`、`helm`、`compose` 等围栏自动按 YAML 处理，`conf` 按 INI 处理，兼容大写围栏。
-* 新增：无主图文章自动回退默认头图：文章未设置主图时自动使用主题默认头图（可配合 `/wallpaper.php` 每日必应壁纸跳转实现每日自动换壁纸）。
-* 调整：移动端文章正文字号调小两号：≤767.5px 下 `.yue` 正文默认 18px → 16px，后台字号调节档位同步 -2px。
-* 调整：文章正文链接配色：未访问显示蓝色（`#0000cc`），已访问显示紫色（`#660099`），暗色模式自动切换为亮蓝/亮紫变体以保证可读性。
-* 调整：样式改动同步维护于 `assets/VOID-Plus.scss`（源码）与 `assets/VOID-Plus.css`（编译产物），执行 gulp 构建不会丢失。
-* 调整：版本号统一为 3.5.6（`functions.php`、`package.json`、README 标题），与本更新日志保持一致。
+* 修复：归档页文章链接全部为空，页面中还会混入 PHP 警告文本
+* 新增：代码块右上角显示语言标签与一键复制按钮，语法高亮扩充至 60+ 种语言
+* 新增：文章未设置主图时自动回退使用主题默认头图
+* 调整：移动端文章正文字号调小两号（18px → 16px）
+* 调整：正文链接未访问显示蓝色、已访问显示紫色，暗色模式同步适配
+* 调整：样式改动同步维护于 SCSS 源码与编译产物，gulp 构建不会丢失
+* 调整：版本号统一为 3.5.6
 
 **🍰 2026-10-29 Version 3.5.5**
 
 修复与体验优化版本：
 
-* 修复：首页刷新闪现无样式页面（FOUC）——页面模板先输出 `<body>` 再输出 `<!DOCTYPE>/<head>`，浏览器落入怪异模式(Quirks)导致 CSS 不再阻塞渲染；修正 `index/post/page/Archives` 模板加载顺序（`head.php` 先于 `header.php`），Google Fonts 改为异步加载不阻塞首屏
-* 修复：右下角"回到顶部"按钮点击无反应——怪异模式下 `documentElement.scrollTop` 恒为 0 导致平滑滚动立即终止；平滑滚动改用 `document.scrollingElement`，任何模式下均可靠
-* 修复：文章目录高亮永远停留在第一项、点击目录标题不跳转——文章标题缺少 id 锚点导致 tocbot 目录链接退化为 `#`；现在自动为无锚点标题生成 id（`toc-heading-N`），并新增 `headingsOffset: 60` 修正固定顶栏下的高亮判定与跳转落点
-* 调整：移除右下角齿轮设置面板（手动明暗切换/字号调节/Sans-Serif 字体切换/RSS 友链）及前台登录表单、后台入口、已登录态快捷按钮等冗余项，仅保留"回到顶部"与"文章目录伸缩"按钮（无目录时目录按钮自动隐藏）
+* 修复：首页刷新时闪现无样式页面（FOUC）
+* 修复：右下角"回到顶部"按钮点击无反应
+* 修复：文章目录高亮永远停在第一项、点击目录标题不跳转
+* 调整：移除右下角齿轮设置面板与前台登录、后台入口等冗余项，仅保留回顶部与目录伸缩按钮
 
 **🍰 2026-10-27 Version 3.5.4**
 
-* 新增：发行包随附配套插件（`2.配套插件/VOIDPlus`，同步 VOID-Plugin 仓库 2023-11 更新，含单次图片处理数量上限设置等）
-* 新增：补回上游遗漏的 `OwO_02` 表情资源（`assets/libs/owo/`）
-* 调整：插件获取说明改为随发行包提供；发行包结构与原版一致（`1.主题/VOID-Plus` + `2.配套插件/VOIDPlus`）
+* 新增：发行包随附配套插件（`2.配套插件/VOIDPlus`）
+* 新增：补回上游遗漏的 `OwO_02` 表情资源
+* 调整：发行包结构与原版一致（`1.主题/VOID-Plus` + `2.配套插件/VOIDPlus`）
 
 **🍰 2026-10-27 Version 3.5.3**
 
 安全、兼容性与工程化维护版本，基于 3.5.1：
 
-* 安全：新增 `Utils::esc()` 输出转义，头图/摘要等自定义字段全部转义后输出；修复 `data-image`/`data-excerpt` 等处的存储型 XSS 输出面
-* 安全：`brandFont` 仅允许 http(s) 或站内相对 URL，字体样式/字重白名单校验；高级设置数字字段强制整型；Twitter ID 校验
-* 安全：随主题提供 `.htaccess`（安全响应头、目录保护、隐藏文件拒绝、缓存与压缩）
-* 兼容：适配 Typecho 1.3 / PHP 8.x，修复评论父级内容接口签名不一致导致的 Fatal error
-* 兼容：修复搜索/分类/首页等列表页因永久链接计算触发的 Router 异常
-* 兼容：修复 PHP 8 未定义键告警、评论链接/取消回复链接错误；移除全局 `error_reporting(0)` 错误屏蔽
-* 新增：`sitemap.php` 站点地图（支持 `?type=post|page|all`、`?days=N`，按路由输出正确永久链接）与 `robots.txt` 模板
-* 优化：SEO 标签补全（`rel=canonical`、`og:locale`、`og:image:alt`、`twitter:image:alt`、`article:author` 等），无头图时以主题图标作为 `og:image`
-* 修复：夜间模式切换时的首屏白屏闪烁（前置内联脚本）
-* 工程：前端构建产物纳入版本库，克隆即可部署；工具链迁移至 dart-sass，新增 CI（PHP lint、未转义输出守卫、构建校验）
-* 调整：后台更新检查改用本仓库 Releases；版本号统一为 3.5.3
+* 安全：新增 `Utils::esc()` 输出转义，头图/摘要等自定义字段全部转义后输出
+* 安全：`brandFont` 限制为 http(s) 或站内相对 URL，数字字段强制整型
+* 安全：随主题提供 `.htaccess`（安全响应头、目录保护、缓存与压缩）
+* 兼容：适配 Typecho 1.3 / PHP 8.x
+* 兼容：修复列表页永久链接计算触发的 Router 异常
+* 兼容：修复 PHP 8 未定义键告警与评论链接错误
+* 新增：`sitemap.php` 站点地图与 `robots.txt` 模板
+* 优化：补全 SEO 标签（canonical、og:locale、og:image:alt 等）
+* 修复：夜间模式切换时的首屏白屏闪烁
+* 工程：前端构建产物纳入版本库，新增 CI 检查
+* 调整：后台更新检查改用本仓库 Releases，版本号统一为 3.5.3
 
 **🍰 2020-07-04 Version 3.5.1**
 
