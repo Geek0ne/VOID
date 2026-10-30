@@ -492,8 +492,37 @@ Class Contents
     }
 
     /**
+     * 生成内容的永久链接
+     *
+     * Typecho 1.3 起 Widget\Base\Contents::filter() 不再向数据行写入 permalink 字段,
+     * 永久链接改由 Widget 对象的 ___permalink() 惰性计算, 因此直接对 table.contents
+     * 的原始数据行取 $row['permalink'] 会触发 "Undefined array key" 警告。
+     * 这里按核心同款算法(路由表 + 站点 index)为纯数据行补出永久链接,
+     * 与 sitemap.php 的处理方式保持一致。
+     *
+     * @param array $row table.contents 数据行
+     * @return string
+     */
+    public static function permalink(array $row)
+    {
+        $params = $row;
+
+        // 核心 Widget\Base\Contents::getRouterParam() 对年月日参数的取值方式
+        if (isset($row['created'])) {
+            $params['year']  = date('Y', $row['created']);
+            $params['month'] = date('m', $row['created']);
+            $params['day']   = date('d', $row['created']);
+        }
+
+        return Typecho_Common::url(
+            Typecho_Router::url($row['type'], $params),
+            Helper::options()->index
+        );
+    }
+
+    /**
      * 内容归档
-     * 
+     *
      * @return array
      */
     public static function archives($widget, $excerpt = false)
@@ -511,14 +540,15 @@ Class Contents
             $row = $widget->filter($row);
             $arr = array(
                 'title' => $row['title'],
-                'permalink' => $row['permalink']);
+                'permalink' => self::permalink($row));
 
             if(Utils::isPluginAvailable('VOID')) {
                 $arr['words'] = $row['wordCount'];
             }
-            
+
             if($excerpt){
-                $arr['excerpt'] = substr($row['content'], 30);
+                // Typecho 1.3 的内容正文列名为 text,旧版的 content 键已不存在
+                $arr['excerpt'] = substr($row['text'], 0, 30);
             }
             $stat[date('Y', $row['created'])][$row['created']] = $arr;
         }
