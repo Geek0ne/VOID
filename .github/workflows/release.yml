@@ -2,7 +2,8 @@ name: Create Release on Tag
 
 on:
   push:
-    tags: ['v*']
+    tags:
+      - 'v*'
 
 permissions:
   contents: write
@@ -12,20 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Create GitHub Release
-        env:
-          GH_TOKEN: *** github.token }}
-        run: |
-          TAG="${GITHUB_REF_NAME}"
-          NOTES_FILE="RELEASE-NOTES-${TAG}.md"
-          if ! gh release view "$TAG" >/dev/null 2>&1; then
-            if [ -f "$NOTES_FILE" ]; then
-              gh release create "$TAG" --title "VOID ${TAG#v}" --notes-file "$NOTES_FILE"
-            else
-              gh release create "$TAG" --title "VOID ${TAG#v}" --generate-notes
-            fi
-          fi
 
       - name: Build distribution package
         run: |
@@ -43,7 +30,49 @@ jobs:
           cd ../..
           echo "dist/VOID.zip 打包完成: $(du -h dist/VOID.zip | cut -f1)"
 
-      - name: Upload release asset
-        env:
-          GH_TOKEN: *** github.token }}
-        run: gh release upload "${GITHUB_REF_NAME}" dist/VOID.zip --clobber
+      - name: Create Release and Upload Asset
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const tag = process.env.GITHUB_REF_NAME;
+            const title = 'VOID ' + tag.replace(/^v/, '');
+            const notesFile = 'RELEASE-NOTES-' + tag + '.md';
+            const notes = fs.existsSync(notesFile) ? fs.readFileSync(notesFile, 'utf8') : null;
+            let release = null;
+            try {
+              const res = await github.rest.repos.getReleaseByTag({ owner: context.repo.owner, repo: context.repo.repo, tag: tag });
+              release = res.data;
+            } catch (e) {
+              if (e.status !== 404) { throw e; }
+            }
+            if (!release) {
+              const created = await github.rest.repos.createRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag_name: tag,
+                name: title,
+                body: notes || undefined,
+                generate_release_notes: notes ? false : true
+              });
+              release = created.data;
+            }
+            const assetName = 'VOID.zip';
+            for (const asset of (release.assets || [])) {
+              if (asset.name === assetName) {
+                await github.rest.repos.deleteReleaseAsset({ owner: context.repo.owner, repo: context.repo.repo, asset_id: asset.id });
+              }
+            }
+            const data = fs.readFileSync('dist/VOID.zip');
+            await github.rest.repos.uploadReleaseAsset({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id: release.id,
+              name: assetName,
+              data: data,
+              headers: {
+                'content-type': 'application/zip',
+                'content-length': data.length
+              }
+            });
+            console.log('Release ready: ' + release.html_url);
