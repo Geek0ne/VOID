@@ -8,7 +8,7 @@
     "build": "gulp build",
     "watch": "gulp dev",
     "sass": "gulp sass",
-    "lint": "eslint assets/src --ext .js || true",
+    "lint": "eslint assets --ext .js --ignore-pattern assets/libs || true",
     "lint:php": "find . -name '*.php' -not -path './.git/*' -print0 | xargs -0 -n1 php -l | grep -v 'No syntax errors' || true"
   },
   "devDependencies": {

@@ -104,8 +104,8 @@ Class VOIDPlus_ParseImgInfo
      */
     public static function GetImageSize($url) 
     {
-        error_reporting(0);
-        $meta = getimagesize($url);
+        // 仅抑制本次调用的告警，避免全局错误屏蔽影响后续请求
+        $meta = @getimagesize($url);
         if ($meta == false) {
             // 尝试另一种方式
             $meta = self::GetImageSizeCURL($url);

@@ -70,7 +70,7 @@ class VOIDPlus_Action extends Typecho_Widget implements Widget_Interface_Do
             exit;
         }
         
-        $cid = $_GET['cid'];
+        $cid = isset($_GET['cid']) ? intval($_GET['cid']) : 0;
         print_r(VOIDPlus_ParseImgInfo::parse($cid));
     }
 
@@ -185,7 +185,7 @@ class VOIDPlus_Action extends Typecho_Widget implements Widget_Interface_Do
         header("Content-type:application/json");
         $older_than = null;
         if (array_key_exists('older_than', $_GET))
-            $older_than = $_GET['older_than'];
+            $older_than = intval($_GET['older_than']);
         
         $query = $db->select()
                     ->from('table.votes')

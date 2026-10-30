@@ -385,8 +385,11 @@ class Utils
 
         if(!empty($options->advance)){
             $settings = json_decode($options->advance, true);
-            foreach ($settings as $key => $value) {
-                $advanceSetting[$key] = $value;
+            // 示例文件带注释，用户直接粘贴会导致解析失败，此时保留默认设置
+            if(is_array($settings)){
+                foreach ($settings as $key => $value) {
+                    $advanceSetting[$key] = $value;
+                }
             }
         }
 
