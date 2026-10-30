@@ -11,6 +11,13 @@
   <a href="https://github.com/Geek0ne/VOID/releases"><img alt="release" src="https://img.shields.io/github/v/release/Geek0ne/VOID?style=flat-square"></a>
   <a href="https://github.com/Geek0ne/VOID/blob/master/LICENSE"><img alt="license" src="https://img.shields.io/github/license/Geek0ne/VOID?style=flat-square"></a>
 </p>
+## 最新修改（2026-10-30）
+
+* **移动端文章正文字号调小两号**：≤767.5px 下 `.yue` 正文默认 18px → 16px，后台字号调节档位同步 -2px
+* **文章正文链接配色**：未访问显示蓝色（`#0000cc`），已访问显示紫色（`#660099`），暗色模式自动切换为亮蓝/亮紫变体以保证可读性
+* **无主图文章自动回退默认头图**：文章未设置主图时自动使用主题默认头图（可配合 `/wallpaper.php` 每日必应壁纸跳转实现每日自动换壁纸）
+
+> 以上修改同步维护于 `assets/VOID.scss`（源码）与 `assets/VOID.css`（编译产物），执行 gulp 构建不会丢失。
 
 ## 特性
 

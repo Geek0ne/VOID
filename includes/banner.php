@@ -14,6 +14,10 @@ $blur = false;
 if($this->is('post') || $this->is('page')) {
     $banner = $this->fields->bannerStyle < 2 ? $this->fields->banner : '';
     $blur = $this->fields->bannerStyle == 1;
+    // 未设置文章主图时，回退到默认头图（如每日壁纸）
+    if ($this->fields->bannerStyle < 2 && empty($banner)) {
+        $banner = $setting['defaultBanner'];
+    }
 }
 ?>
 
